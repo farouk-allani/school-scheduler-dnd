@@ -14,19 +14,21 @@ export const ItemTypes = {
 };
 
 const Cell = ({ id, subject, setSubject, day, time , isCellAvailable}) => {
-  const [{ isOver }, drop] = useDrop(() => ({
+  const [{ isOver,canDrop }, drop] = useDrop(() => ({
     accept: ItemTypes.SUBJECT,
+    canDrop : (item) => isCellAvailable(item.name,day, time),
     drop: (item) => setSubject(id, item.id, day, time),
     collect: (monitor) => ({
       isOver: monitor.isOver(),
-      isCellAvailable: isCellAvailable(day, time),
+      canDrop: monitor.canDrop(),
+      
       
     }),
     
   }));
 
   return (
-    <div ref={drop} className={isOver ? (isCellAvailable ? "cell-over-green" : "cell-over-red") : "cell"}>
+    <div ref={drop} className={isOver ? (canDrop ? "cell-over-green" : "cell-over-red") : "cell"}>
       {subject}
     </div>
   );
@@ -35,8 +37,8 @@ const Cell = ({ id, subject, setSubject, day, time , isCellAvailable}) => {
 export default function Home() {
   const subjects = useSelector((state) => state.handleSubjects);
   const rows = useSelector((state) => state.handleRows);
-  // const draggedSubject = useSelector((state) => state.handleDraggedSubject);
-  const [draggedSubject, setDraggedSubject] = React.useState("");
+  const draggedSubject = useSelector((state) => state.handleDraggedSubject);
+  
   const dispatch = useDispatch();
 
   const setSubject = (id, subjectId, day, time) => {
@@ -105,11 +107,11 @@ export default function Home() {
   
   
 
-  const isCellAvailable = (day,time ) => {
+  const isCellAvailable = (subjectName,day,time ) => {
     // Your logic to check if the cell is available
     // Return true if it is available, false otherwise
  
-    const subject = subjects.find((subject) => subject.name === draggedSubject);
+    const subject = subjects.find((subject) => subject.name === subjectName);
     console.log('subject for color check', subject)
     console.log('draggedSubject for color check', draggedSubject)
     const isAvailable = subject?.availability?.some(
@@ -128,7 +130,7 @@ export default function Home() {
         {subjects
           .filter((subject, i) => subject.isDropped === false)
           .map((subject) => (
-            <Subject key={subject.id} id={subject.id} name={subject.name} setDraggedSubject={setDraggedSubject} />
+            <Subject key={subject.id} id={subject.id} name={subject.name} />
           ))}
 
         <div className={styles.table}>
