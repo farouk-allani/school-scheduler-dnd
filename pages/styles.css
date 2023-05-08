@@ -1,0 +1,36 @@
+.MuiDataGrid-colCell {
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  
+  .cell-over {
+    background-color: #df8888;
+    height: 40px;
+    width: 100px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  .cell{
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background-color:aqua;
+    height: 40px;
+    width: 100px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cell-over-green  {
+    background-color: #88df88;
+    height: 40px;
+    width: 100px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  
+  .cell-over-red{
+    background-color: #df8888;
+    height: 40px;
+    width: 100px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+
+  }
