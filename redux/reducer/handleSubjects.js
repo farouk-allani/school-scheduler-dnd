@@ -14,7 +14,7 @@ const subjects = [
       { day: "saturday", time: "08:00-09:00"}
     ],
     isDropped: false,
-    isDragged: false,
+    
   },
   {
     id: "english",
@@ -32,7 +32,7 @@ const subjects = [
       { day: 'monday', time: '11:00-12:00'}
     ],
     isDropped: false,
-    isDragged: false,
+    
   },
   {
     id: "arabic",
@@ -46,7 +46,7 @@ const subjects = [
       { day: "wednesday", time: "13:00-14:00" },
     ],
     isDropped: false,
-    isDragged: false,
+    
   },
   {
     id: "science",
@@ -60,7 +60,7 @@ const subjects = [
       { day: "thursday", time: "13:00-14:00" },
     ],
     isDropped: false,
-    isDragged: false,
+    
   },
   {
     id: "history",
@@ -74,7 +74,7 @@ const subjects = [
       { day: "wednesday", time: "13:00-14:00" },
     ],
     isDropped: false,
-    isDragged: false,
+    
   },
   {
     id: "geography",
@@ -88,7 +88,7 @@ const subjects = [
       { day: "thursday", time: "13:00-14:00" },
     ],
     isDropped: false,
-    isDragged: false,
+    
   },
   {
     id: "religion",
@@ -102,7 +102,7 @@ const subjects = [
       { day: "wednesday", time: "13:00-14:00" },
     ],
     isDropped: false,
-    isDragged: false,
+   
   },
 ];
 

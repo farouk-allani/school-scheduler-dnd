@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { dropSubject, unDropSubject } from "../redux/action";
 import { insertSubject } from "../redux/action";
 import SubjectsTable from "../components/SubjectsTable";
+import TeacherTable from "../components/TeacherTable";
 
 
 export const ItemTypes = {
@@ -38,7 +39,7 @@ export const Cell = ({ id, subject, setSubject, day, time , isCellAvailable}) =>
 export default function Home() {
   const subjects = useSelector((state) => state.handleSubjects);
   const rows = useSelector((state) => state.handleRows);
-  const draggedSubject = useSelector((state) => state.handleDraggedSubject);
+
   
   const dispatch = useDispatch();
 
@@ -121,7 +122,7 @@ export default function Home() {
             <Subject key={subject.id} id={subject.id} name={subject.name} />
           ))}
 
-        
+        <TeacherTable kesmRows={kesmRows} setKesm={setKesm} emptyKesmCell={emptyKesmCell} isKesmCellAvailable={isKesmCellAvailable} />
       </div>
 
       </DndProvider>
