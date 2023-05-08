@@ -136,3 +136,13 @@
 .cell-align-center {
   text-align: center;
 }
+
+.subjects{
+  background-color: rgb(23,162,184,0.2);
+    margin: 29px auto;
+    display: flex;
+    justify-content: center;
+    padding: 14px;
+    flex-wrap: wrap;
+  
+}

@@ -8,7 +8,10 @@ const subjects = [
     },
     availability: [
       { day: "monday", time: "09:00-10:00" },
-      { day: "wednesday", time: "01:00-02:00" },
+      { day: "wednesday", time: "13:00-14:00" },
+      { day: "friday", time: "13:00-14:00"},
+      { day: "saturday", time: "13:00-14:00"},
+      { day: "saturday", time: "08:00-09:00"}
     ],
     isDropped: false,
     isDragged: false,
@@ -22,7 +25,11 @@ const subjects = [
     },
     availability: [
       { day: "tuesday", time: "09:00-10:00" },
-      { day: "thursday", time: "01:00-02:00" },
+      { day: "thursday", time: "13:00-14:00" },
+      { day: "friday", time: "13:00-14:00"},
+      { day: "saturday", time: "13:00-14:00"},
+      { day: "saturday", time: "08:00-09:00"},
+      { day: 'monday', time: '11:00-12:00'}
     ],
     isDropped: false,
     isDragged: false,
@@ -36,7 +43,7 @@ const subjects = [
     },
     availability: [
       { day: "monday", time: "09:00-10:00" },
-      { day: "wednesday", time: "01:00-02:00" },
+      { day: "wednesday", time: "13:00-14:00" },
     ],
     isDropped: false,
     isDragged: false,
@@ -50,7 +57,7 @@ const subjects = [
     },
     availability: [
       { day: "tuesday", time: "09:00-10:00" },
-      { day: "thursday", time: "01:00-02:00" },
+      { day: "thursday", time: "13:00-14:00" },
     ],
     isDropped: false,
     isDragged: false,
@@ -64,7 +71,7 @@ const subjects = [
     },
     availability: [
       { day: "monday", time: "09:00-10:00" },
-      { day: "wednesday", time: "01:00-02:00" },
+      { day: "wednesday", time: "13:00-14:00" },
     ],
     isDropped: false,
     isDragged: false,
@@ -78,7 +85,7 @@ const subjects = [
     },
     availability: [
       { day: "tuesday", time: "09:00-10:00" },
-      { day: "thursday", time: "01:00-2:00" },
+      { day: "thursday", time: "13:00-14:00" },
     ],
     isDropped: false,
     isDragged: false,
@@ -92,7 +99,7 @@ const subjects = [
     },
     availability: [
       { day: "monday", time: "09:00-10:00" },
-      { day: "wednesday", time: "01:00-02:00" },
+      { day: "wednesday", time: "13:00-14:00" },
     ],
     isDropped: false,
     isDragged: false,

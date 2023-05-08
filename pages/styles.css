@@ -11,7 +11,7 @@
 
   .cell{
     border: 1px solid rgba(0, 0, 0, 0.12);
-    background-color:aqua;
+    background-color:#F2F3F3;
     height: 40px;
     width: 100px;
     text-align: center;
@@ -33,4 +33,17 @@
     width: 100px;
     border: 1px solid rgba(0, 0, 0, 0.12);
 
+  }
+
+  th{
+    background-color: rgb(23,162,184,0.2);
+  }
+
+  td{
+    background-color: rgb(23,162,184,0.2);
+  }
+
+  .subjects{
+    background-color: rgb(23,162,184,0.2);
+    
   }

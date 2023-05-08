@@ -7,13 +7,14 @@ import Subject from "../components/Subject";
 import { useSelector, useDispatch } from "react-redux";
 import { dropSubject, unDropSubject } from "../redux/action";
 import { insertSubject } from "../redux/action";
+import SubjectsTable from "../components/SubjectsTable";
 
 
 export const ItemTypes = {
   SUBJECT: "subject",
 };
 
-const Cell = ({ id, subject, setSubject, day, time , isCellAvailable}) => {
+export const Cell = ({ id, subject, setSubject, day, time , isCellAvailable}) => {
   const [{ isOver,canDrop }, drop] = useDrop(() => ({
     accept: ItemTypes.SUBJECT,
     canDrop : (item) => isCellAvailable(item.name,day, time),
@@ -42,10 +43,7 @@ export default function Home() {
   const dispatch = useDispatch();
 
   const setSubject = (id, subjectId, day, time) => {
-    console.log(id, subjectId);
-    console.log("dropped");
-    console.log("day", day);
-    console.log("time", time);
+
     // check if the case is already filled first
 
     if (rows.find((row) => row.id === id)[day] !== "") {
@@ -61,20 +59,7 @@ export default function Home() {
     const isAvailable = selectedSubject.availability.some(
       (availability) => availability.day === day && availability.time === time
     );
-    const isDay = selectedSubject.availability.day === day;
-    const isTime = selectedSubject.availability.time === time;
-    console.log("isDay", isDay);
-    console.log("isTime", isTime);
-    console.log(
-      "selectedSubject.availability.day",
-      selectedSubject.availability[0].day
-    );
-    console.log(
-      "selectedSubject.availability.time",
-      selectedSubject.availability[0].time
-    );
-    console.log("isAvailable", isAvailable);
-
+    
     if (!isAvailable) {
       alert("هذا المقرر غير متاح في هذا الوقت");
       return;
@@ -113,7 +98,6 @@ export default function Home() {
  
     const subject = subjects.find((subject) => subject.name === subjectName);
     console.log('subject for color check', subject)
-    console.log('draggedSubject for color check', draggedSubject)
     const isAvailable = subject?.availability?.some(
       (availability) => availability.day === day && availability.time === time
     );
@@ -127,124 +111,19 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <DndProvider backend={HTML5Backend}>
+
+        <SubjectsTable rows={rows} setSubject={setSubject} emptyCell={emptyCell} isCellAvailable={isCellAvailable} /> 
+        
+        <div className={styles.subjects}>
         {subjects
           .filter((subject, i) => subject.isDropped === false)
           .map((subject) => (
             <Subject key={subject.id} id={subject.id} name={subject.name} />
           ))}
 
-        <div className={styles.table}>
-          <table>
-            <tbody>
-              <tr>
-                <th>التوقيت/الأيام</th>
-                {rows.map((row) => (
-                  <td key={row.id}>{row.time}</td>
-                ))}
-              </tr>
-              <tr>
-                <th>الاثنين</th>
-                {rows.map((row) => (
-                  <td key={row.id} onClick={() => emptyCell(row.id, "monday")}>
-                    <Cell
-                      id={row.id}
-                      day="monday"
-                      time={row.time}
-                      subject={row.monday}
-                      setSubject={setSubject}
-                      isCellAvailable={isCellAvailable}
-                      
-                    />
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th>الثلاثاء</th>
-                {rows.map((row) => (
-                  <td key={row.id} onClick={() => emptyCell(row.id, "tuesday")}>
-                    <Cell
-                      id={row.id}
-                      day="tuesday"
-                      time={row.time}
-                      subject={row.tuesday}
-                      setSubject={setSubject}
-                      isCellAvailable={isCellAvailable}
-                    />
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th>الأربعاء</th>
-                {rows.map((row) => (
-                  <td
-                    key={row.id}
-                    onClick={() => emptyCell(row.id, "wednesday")}
-                  >
-                    <Cell
-                      id={row.id}
-                      day="wednesday"
-                      time={row.time}
-                      subject={row.wednesday}
-                      setSubject={setSubject}
-                      isCellAvailable={isCellAvailable}
-                    />
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th>الخميس</th>
-                {rows.map((row) => (
-                  <td
-                    key={row.id}
-                    onClick={() => emptyCell(row.id, "thursday")}
-                  >
-                    <Cell
-                      id={row.id}
-                      day="thursday"
-                      time={row.time}
-                      subject={row.thursday}
-                      setSubject={setSubject}
-                      isCellAvailable={isCellAvailable}
-                    />
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th>الجمعة</th>
-                {rows.map((row) => (
-                  <td key={row.id} onClick={() => emptyCell(row.id, "friday")}>
-                    <Cell
-                      id={row.id}
-                      day="friday"
-                      time={row.time}
-                      subject={row.friday}
-                      setSubject={setSubject}
-                      isCellAvailable={isCellAvailable}
-                    />
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th>السبت</th>
-                {rows.map((row) => (
-                  <td
-                    key={row.id}
-                    onClick={() => emptyCell(row.id, "saturday")}
-                  >
-                    <Cell
-                      id={row.id}
-                      day="saturday"
-                      time={row.time}
-                      subject={row.saturday}
-                      setSubject={setSubject}
-                      isCellAvailable={isCellAvailable}
-                    />
-                  </td>
-                ))}
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        
+      </div>
+
       </DndProvider>
     </div>
   );
