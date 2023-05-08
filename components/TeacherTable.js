@@ -1,20 +1,20 @@
 import React from 'react'
 import styles from "../styles/Home.module.css";
 import KesmCell from './KesmCell';
-const TeacherTable = ({ classRows, setKesm,emptyKesmCell,isKesmCellAvailable }) => {
+const TeacherTable = ({ kesmRows, setKesm,emptyKesmCell,isKesmCellAvailable }) => {
   return (
     <div className={styles.table}>
           <table>
             <tbody>
               <tr>
                 <th>التوقيت/الأيام</th>
-                {classRows.map((row) => (
+                {kesmRows.map((row) => (
                   <td key={row.id}>{row.time}</td>
                 ))}
               </tr>
               <tr>
                 <th>الاثنين</th>
-                {classRows.map((row) => (
+                {kesmRows.map((row) => (
                   <td key={row.id} onClick={() => emptyKesmCell(row.id, "monday")}>
                     <KesmCell
                       id={row.id}
@@ -30,7 +30,7 @@ const TeacherTable = ({ classRows, setKesm,emptyKesmCell,isKesmCellAvailable }) 
               </tr>
               <tr>
                 <th>الثلاثاء</th>
-                {classRows.map((row) => (
+                {kesmRows.map((row) => (
                   <td key={row.id} onClick={() => emptyKesmCell(row.id, "tuesday")}>
                     <KesmCell
                       id={row.id}
@@ -45,7 +45,7 @@ const TeacherTable = ({ classRows, setKesm,emptyKesmCell,isKesmCellAvailable }) 
               </tr>
               <tr>
                 <th>الأربعاء</th>
-                {classRows.map((row) => (
+                {kesmRows.map((row) => (
                   <td
                     key={row.id}
                     onClick={() => emptyKesmCell(row.id, "wednesday")}
@@ -63,7 +63,7 @@ const TeacherTable = ({ classRows, setKesm,emptyKesmCell,isKesmCellAvailable }) 
               </tr>
               <tr>
                 <th>الخميس</th>
-                {classRows.map((row) => (
+                {kesmRows.map((row) => (
                   <td
                     key={row.id}
                     onClick={() => emptyKesmCell(row.id, "thursday")}
@@ -81,7 +81,7 @@ const TeacherTable = ({ classRows, setKesm,emptyKesmCell,isKesmCellAvailable }) 
               </tr>
               <tr>
                 <th>الجمعة</th>
-                {classRows.map((row) => (
+                {kesmRows.map((row) => (
                   <td key={row.id} onClick={() => emptyKesmCell(row.id, "friday")}>
                     <KesmCell
                       id={row.id}
@@ -96,7 +96,7 @@ const TeacherTable = ({ classRows, setKesm,emptyKesmCell,isKesmCellAvailable }) 
               </tr>
               <tr>
                 <th>السبت</th>
-                {classRows.map((row) => (
+                {kesmRows.map((row) => (
                   <td
                     key={row.id}
                     onClick={() => emptyKesmCell(row.id, "saturday")}

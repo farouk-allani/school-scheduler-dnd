@@ -20,9 +20,4 @@ export const insertSubject = (row,day, subjectName) => {
   };
 }
 
-export const draggedSubject = (subjectName) => {
-  return {
-    type: "DRAGGED_SUBJECT",
-    payload:subjectName ,
-  };
-}
+
