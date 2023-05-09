@@ -5,7 +5,7 @@ export const kesmTypes = {
   KESM: "kesm",
 };
 
-const Subject = ({ id, name }) => {
+const Kesm= ({ id, name }) => {
  
   const [{ isDragging }, drag] = useDrag(() => ({
     type: kesmTypes.KESM,
@@ -33,4 +33,4 @@ const Subject = ({ id, name }) => {
   );
 };
 
-export default Subject;
+export default Kesm;

@@ -9,6 +9,7 @@ import { dropSubject, unDropSubject } from "../redux/action";
 import { insertSubject } from "../redux/action";
 import SubjectsTable from "../components/SubjectsTable";
 import TeacherTable from "../components/TeacherTable";
+import Kesm from "../components/Kesm";
 
 export const ItemTypes = {
   SUBJECT: "subject",
@@ -48,6 +49,7 @@ export default function Home() {
   const subjects = useSelector((state) => state.handleSubjects);
   const rows = useSelector((state) => state.handleRows);
   const kesmRows = useSelector((state) => state.handleKesmRows);
+  const aksem= useSelector((state) => state.handleAksem);
 
   const dispatch = useDispatch();
 
@@ -153,6 +155,19 @@ export default function Home() {
           emptyKesmCell={emptyKesmCell}
           isKesmCellAvailable={isKesmCellAvailable}
         />
+        <div className={styles.aksem}>
+        {aksem
+        .filter((kesm, i) => kesm.isDropped === false)
+        .map((kesm)=>(
+          <Kesm
+          key={kesm.id}
+          id={kesm.id}
+          name={kesm.name}
+          />
+
+        ))
+        }
+        </div>
       </DndProvider>
     </div>
   );
