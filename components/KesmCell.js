@@ -1,10 +1,13 @@
 
 import {  useDrop } from "react-dnd";
+const kesmTypes = {
+  KESM: "kesm",
+};
 
 
  const KesmCell = ({ id, kesm, setKesm, day, time , isKesmCellAvailable}) => {
     const [{ isOver,canDrop }, drop] = useDrop(() => ({
-      accept: ItemTypes.class,
+      accept: kesmTypes.KESM,
       canDrop : (item) => isKesmCellAvailable(item.name,day, time),
       drop: (item) => setKesm(id, item.id, day, time),
       collect: (monitor) => ({

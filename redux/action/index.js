@@ -20,4 +20,21 @@ export const insertSubject = (row,day, subjectName) => {
   };
 }
 
+export const  dropKesm=(kesmId,dayAndTime)=>{
+    return{
+        type:"DROP_KESM",
+        payload:{kesmId,dayAndTime},
+        
+    }
+}
+
+export const  unDropKesm=(kesmId)=>{
+    return{
+        type:"UNDROP_KESM",
+        payload:kesmId,
+        
+    }
+} 
+
+
 

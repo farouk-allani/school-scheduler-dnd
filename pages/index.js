@@ -10,27 +10,35 @@ import { insertSubject } from "../redux/action";
 import SubjectsTable from "../components/SubjectsTable";
 import TeacherTable from "../components/TeacherTable";
 
-
 export const ItemTypes = {
   SUBJECT: "subject",
 };
 
-export const Cell = ({ id, subject, setSubject, day, time , isCellAvailable}) => {
-  const [{ isOver,canDrop }, drop] = useDrop(() => ({
+export const Cell = ({
+  id,
+  subject,
+  setSubject,
+  day,
+  time,
+  isCellAvailable,
+}) => {
+  const [{ isOver, canDrop }, drop] = useDrop(() => ({
     accept: ItemTypes.SUBJECT,
-    canDrop : (item) => isCellAvailable(item.name,day, time),
+    canDrop: (item) => isCellAvailable(item.name, day, time),
     drop: (item) => setSubject(id, item.id, day, time),
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
-      
-      
     }),
-    
   }));
 
   return (
-    <div ref={drop} className={isOver ? (canDrop ? "cell-over-green" : "cell-over-red") : "cell"}>
+    <div
+      ref={drop}
+      className={
+        isOver ? (canDrop ? "cell-over-green" : "cell-over-red") : "cell"
+      }
+    >
       {subject}
     </div>
   );
@@ -39,12 +47,30 @@ export const Cell = ({ id, subject, setSubject, day, time , isCellAvailable}) =>
 export default function Home() {
   const subjects = useSelector((state) => state.handleSubjects);
   const rows = useSelector((state) => state.handleRows);
+  const kesmRows = useSelector((state) => state.handleKesmRows);
 
-  
   const dispatch = useDispatch();
 
-  const setSubject = (id, subjectId, day, time) => {
+  const setKesm = (kesmId, dayAndTime) => {
+    dispatch(dropKesm(kesmId, dayAndTime));
+  };
+  const emptyKesmCell = (kesmId) => {
+    dispatch(unDropKesm(kesmId));
+  };
+  const isKesmCellAvailable = (subjectName, day, time) => {
+    const kesm = kesmRows.find((kesm) => kesm.dayAndTime === day + time);
+    if (kesm) {
+      if (kesm.subjectName === subjectName) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  };
 
+  const setSubject = (id, subjectId, day, time) => {
     // check if the case is already filled first
 
     if (rows.find((row) => row.id === id)[day] !== "") {
@@ -60,7 +86,7 @@ export default function Home() {
     const isAvailable = selectedSubject.availability.some(
       (availability) => availability.day === day && availability.time === time
     );
-    
+
     if (!isAvailable) {
       alert("هذا المقرر غير متاح في هذا الوقت");
       return;
@@ -90,41 +116,43 @@ export default function Home() {
 
     dispatch(insertSubject(row, day, ""));
   };
-  
-  
 
-  const isCellAvailable = (subjectName,day,time ) => {
+  const isCellAvailable = (subjectName, day, time) => {
     // Your logic to check if the cell is available
     // Return true if it is available, false otherwise
- 
+
     const subject = subjects.find((subject) => subject.name === subjectName);
-    console.log('subject for color check', subject)
+    console.log("subject for color check", subject);
     const isAvailable = subject?.availability?.some(
       (availability) => availability.day === day && availability.time === time
     );
-    console.log('isAvailable for color', isAvailable)
+    console.log("isAvailable for color", isAvailable);
     return isAvailable;
-  
-    
-
   };
 
   return (
     <div className={styles.container}>
       <DndProvider backend={HTML5Backend}>
+        <SubjectsTable
+          rows={rows}
+          setSubject={setSubject}
+          emptyCell={emptyCell}
+          isCellAvailable={isCellAvailable}
+        />
 
-        <SubjectsTable rows={rows} setSubject={setSubject} emptyCell={emptyCell} isCellAvailable={isCellAvailable} /> 
-        
         <div className={styles.subjects}>
-        {subjects
-          .filter((subject, i) => subject.isDropped === false)
-          .map((subject) => (
-            <Subject key={subject.id} id={subject.id} name={subject.name} />
-          ))}
-
-        <TeacherTable kesmRows={kesmRows} setKesm={setKesm} emptyKesmCell={emptyKesmCell} isKesmCellAvailable={isKesmCellAvailable} />
-      </div>
-
+          {subjects
+            .filter((subject, i) => subject.isDropped === false)
+            .map((subject) => (
+              <Subject key={subject.id} id={subject.id} name={subject.name} />
+            ))}
+        </div>
+        <TeacherTable
+          kesmRows={kesmRows}
+          setKesm={setKesm}
+          emptyKesmCell={emptyKesmCell}
+          isKesmCellAvailable={isKesmCellAvailable}
+        />
       </DndProvider>
     </div>
   );
