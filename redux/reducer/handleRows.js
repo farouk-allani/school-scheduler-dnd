@@ -105,12 +105,14 @@ const rows = [
     switch (action.type) {
       case "INSERT_SUBJECT":
         
-        const {row,day, subjectName} = action.payload;
+        const {row ,day, subjectName} = action.payload;
         const newState = [...state];
-        const index = newState.findIndex((item) => item === row);
-        console.log('index',index);
+        const index = newState.findIndex((item) => item.id === row.id);
         newState[index][day] = subjectName;
+        
         return newState;
+      
+
 
 
         

@@ -156,3 +156,18 @@
     flex-wrap: wrap;
   
 }
+.kesmName{
+  color:tomato;
+  padding: 10px;
+  margin: 10px;
+  font-size: large;
+  font-weight: 700;
+}
+
+.teacherName{
+  color:tomato;
+  padding: 10px;
+  margin: 10px;
+  font-size: large;
+  font-weight: 700;
+}

@@ -8,12 +8,14 @@ const subjects = [
     },
     availability: [
       { day: "monday", time: "09:00-10:00" },
+      { day: "tuesday", time: "09:00-10:00" },
       { day: "wednesday", time: "13:00-14:00" },
       { day: "friday", time: "13:00-14:00"},
       { day: "saturday", time: "13:00-14:00"},
       { day: "saturday", time: "08:00-09:00"}
     ],
     isDropped: false,
+    duration: 1,
     
   },
   {
@@ -32,6 +34,7 @@ const subjects = [
       { day: 'monday', time: '11:00-12:00'}
     ],
     isDropped: false,
+    duration: 1,
     
   },
   {
@@ -43,9 +46,11 @@ const subjects = [
     },
     availability: [
       { day: "monday", time: "09:00-10:00" },
+      {day:"monday", time:"10:00-11:00"},
       { day: "wednesday", time: "13:00-14:00" },
     ],
     isDropped: false,
+    duration: 2,
     
   },
   {
@@ -60,6 +65,7 @@ const subjects = [
       { day: "thursday", time: "13:00-14:00" },
     ],
     isDropped: false,
+    duration: 2,
     
   },
   {
@@ -74,6 +80,7 @@ const subjects = [
       { day: "wednesday", time: "13:00-14:00" },
     ],
     isDropped: false,
+    duration: 2,
     
   },
   {
@@ -88,6 +95,7 @@ const subjects = [
       { day: "thursday", time: "13:00-14:00" },
     ],
     isDropped: false,
+    duration: 1,
     
   },
   {
@@ -102,6 +110,7 @@ const subjects = [
       { day: "wednesday", time: "13:00-14:00" },
     ],
     isDropped: false,
+    duration: 1,
    
   },
 ];
