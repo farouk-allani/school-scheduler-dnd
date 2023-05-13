@@ -80,7 +80,9 @@ export const Cell = ({
     // style={{width:'auto'}}
 
     style={{
-      backgroundColor:(isCellFilled &&droppedSubjectDuration===2)||(isCellFilled&&droppedSubjectDuration===1)? backgroundColor:""
+      backgroundColor:(isCellFilled &&droppedSubjectDuration===2)||(isCellFilled&&droppedSubjectDuration===1)? backgroundColor:"",
+      fontWeight:'bolder',
+      border:(isCellFilled&&droppedSubjectDuration===1)? '2px solid':''
     }}
     >
       {subject}
