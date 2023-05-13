@@ -2,7 +2,7 @@ import styles from "../styles/Home.module.css";
 import { useDrag, useDrop } from "react-dnd";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import React from "react";
+import React, { useEffect } from "react";
 import Subject from "../components/Subject";
 import { useSelector, useDispatch } from "react-redux";
 import { dropSubject, unDropSubject } from "../redux/action";
@@ -24,7 +24,14 @@ export const Cell = ({
   time,
   isCellAvailable,
   // selectedSubjectDuration
+  nextCell,
 }) => {
+  const [isCellFilled, setIsCellFilled] = React.useState(false);
+  const [droppedSubjectDuration, setDroppedSubjectDuration] = React.useState(
+    null
+  );
+  const [backgroundColor, setBackgroundColor] = React.useState("");
+
   
   const [{ isOver, canDrop }, drop] = useDrop(() => ({
     
@@ -38,16 +45,43 @@ export const Cell = ({
     }),
   }));
 
+  const isNextCell=nextCell?.rowId===id && nextCell?.day===day
+  
+  const subjects = useSelector((state) => state.handleSubjects);
   
 
+  useEffect(() => {
+   
+
+    if (subject !== "") {
+       console.log("subject", subject)
+       const subjectString=subject.toString()
+       console.log("Subject=", subjects.filter( (subject) => subject.name === subjectString))
+
+      const duration= subjects.find( (subject) => subject.name == subjectString)?.duration
+      setBackgroundColor(subjects.find( (subject) => subject.name == subjectString)?.backgroundColor)
+       console.log("backgroundColor", backgroundColor)
+      
+      setIsCellFilled(true);
+      setDroppedSubjectDuration(duration);
+      console.log("duration", duration)
+    } else {
+      setIsCellFilled(false);
+      setDroppedSubjectDuration(null);
+    }
+  }, [subject]);
   return (
     <div
       ref={drop}
       className={
-        isOver ? (canDrop ? "cell-over-green" : "cell-over-red") : "cell"
+        isOver||isNextCell ? (canDrop  ? "cell-over-green" : "cell-over-red") : ( isCellFilled &&droppedSubjectDuration===2? "mergedCell": "cell")
       }
     //  style={ isOver? {width:`${selectedSubjectDuration*100}px`}:{}  }
-    style={{width:'auto'}}
+    // style={{width:'auto'}}
+
+    style={{
+      backgroundColor:(isCellFilled &&droppedSubjectDuration===2)||(isCellFilled&&droppedSubjectDuration===1)? backgroundColor:""
+    }}
     >
       {subject}
     </div>
@@ -176,7 +210,7 @@ export default function Home() {
           {subjects
             .filter((subject, i) => subject.isDropped === false)
             .map((subject) => (
-              <Subject key={subject.id} id={subject.id} name={subject.name} duration={subject.duration} />
+              <Subject key={subject.id} id={subject.id} name={subject.name} duration={subject.duration} backgroundColor={subject.backgroundColor} />
             ))}
         </div>
 

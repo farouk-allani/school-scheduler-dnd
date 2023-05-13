@@ -13,15 +13,21 @@ const SubjectsTable = ({
 }) => {
 
   const [hoveredCell, setHoveredCell] = useState(null);
+  const [nextCell, setNextCell] = useState(null);
   const subjects = useSelector((state) => state.handleSubjects);
 
   const handleDragOver = (event, rowId, day) => {
     event.preventDefault();
     setHoveredCell({ rowId, day });
+    if(selectedSubjectDuration===2){
+      setNextCell({rowId:rowId+1, day})
+    }
+
   };
 
   const handleDragLeave = () => {
     setHoveredCell(null);
+    setNextCell(null)
   };
 
 
@@ -44,16 +50,22 @@ const SubjectsTable = ({
                 onClick={() => emptyCell(row.id, "monday")}
                 onDragOver={(event) => handleDragOver(event, row.id, "monday")}
                 onDragLeave={handleDragLeave}
-      colSpan={
-        //check if cell is filled then the colspan will be the duration of the subject
-        subjects.find((subject) => subject.id === row.monday)?.duration ||  
+                onDrop={(event) => {
+                  event.preventDefault();
+                  setNextCell(null)
+
+                }
+              }
+      // colSpan={
+      //   //check if cell is filled then the colspan will be the duration of the subject
+      //   subjects.find((subject) => subject.id === row.monday)?.duration ||  
         
         
-        //check if cell is hovered the colspan will be the duration of the selected subject
-        hoveredCell?.rowId === row.id && hoveredCell?.day === "monday"
-          ? selectedSubjectDuration
-          : 1
-      }
+      //   //check if cell is hovered the colspan will be the duration of the selected subject
+      //   hoveredCell?.rowId === row.id && hoveredCell?.day === "monday"
+      //     ? selectedSubjectDuration
+      //     : 1
+      // }
               >
                 <Cell
                   id={row.id}
@@ -63,6 +75,8 @@ const SubjectsTable = ({
                   setSubject={setSubject}
                   isCellAvailable={isCellAvailable}
                   selectedSubjectDuration={selectedSubjectDuration}
+                  nextCell={nextCell}
+
                 />
               </td>
             ))}
@@ -75,11 +89,11 @@ const SubjectsTable = ({
                 onClick={() => emptyCell(row.id, "tuesday")}
                 onDragOver={(event) => handleDragOver(event, row.id, "tuesday")}
                 onDragLeave={handleDragLeave}
-                colSpan={
-                  hoveredCell?.rowId === row.id && hoveredCell?.day === "tuesday"
-                    ? selectedSubjectDuration
-                    : 1
-                }
+                // colSpan={
+                //   hoveredCell?.rowId === row.id && hoveredCell?.day === "tuesday"
+                //     ? selectedSubjectDuration
+                //     : 1
+                // }
               >
                 <Cell
                   id={row.id}
@@ -89,6 +103,7 @@ const SubjectsTable = ({
                   setSubject={setSubject}
                   isCellAvailable={isCellAvailable}
                   selectedSubjectDuration={selectedSubjectDuration}
+                  nextCell={nextCell}
                 />
               </td>
             ))}
@@ -101,11 +116,11 @@ const SubjectsTable = ({
                 onClick={() => emptyCell(row.id, "wednesday")}
                 onDragOver={(event) => handleDragOver(event, row.id, "wednesday")}
                 onDragLeave={handleDragLeave}
-                colSpan={
-                  hoveredCell?.rowId === row.id && hoveredCell?.day === "wednesday"
-                    ? selectedSubjectDuration
-                    : 1
-                }
+                // colSpan={
+                //   hoveredCell?.rowId === row.id && hoveredCell?.day === "wednesday"
+                //     ? selectedSubjectDuration
+                //     : 1
+                // }
               >
                 <Cell
                   id={row.id}
@@ -115,6 +130,7 @@ const SubjectsTable = ({
                   setSubject={setSubject}
                   isCellAvailable={isCellAvailable}
                   selectedSubjectDuration={selectedSubjectDuration}
+                  nextCell={nextCell}
                 />
               </td>
             ))}
@@ -127,11 +143,11 @@ const SubjectsTable = ({
                 onClick={() => emptyCell(row.id, "thursday")}
                 onDragOver={(event) => handleDragOver(event, row.id, "thursday")}
                 onDragLeave={handleDragLeave}
-                colSpan={
-                  hoveredCell?.rowId === row.id && hoveredCell?.day === "thursday"
-                    ? selectedSubjectDuration
-                    : 1
-                }
+                // colSpan={
+                //   hoveredCell?.rowId === row.id && hoveredCell?.day === "thursday"
+                //     ? selectedSubjectDuration
+                //     : 1
+                // }
               >
                 <Cell
                   id={row.id}
@@ -141,6 +157,7 @@ const SubjectsTable = ({
                   setSubject={setSubject}
                   isCellAvailable={isCellAvailable}
                   selectedSubjectDuration={selectedSubjectDuration}
+                  nextCell={nextCell}
                 />
               </td>
             ))}
@@ -153,11 +170,11 @@ const SubjectsTable = ({
                 onClick={() => emptyCell(row.id, "friday")}
                 onDragOver={(event) => handleDragOver(event, row.id, "friday")}
                 onDragLeave={handleDragLeave}
-                colSpan={
-                  hoveredCell?.rowId === row.id && hoveredCell?.day === "friday"
-                    ? selectedSubjectDuration
-                    : 1
-                }
+                // colSpan={
+                //   hoveredCell?.rowId === row.id && hoveredCell?.day === "friday"
+                //     ? selectedSubjectDuration
+                //     : 1
+                // }
               >
                 <Cell
                   id={row.id}
@@ -167,6 +184,7 @@ const SubjectsTable = ({
                   setSubject={setSubject}
                   isCellAvailable={isCellAvailable}
                   selectedSubjectDuration={selectedSubjectDuration}
+                  nextCell={nextCell}
                 />
               </td>
             ))}
@@ -179,11 +197,11 @@ const SubjectsTable = ({
                 onClick={() => emptyCell(row.id, "saturday")}
                 onDragOver={(event) => handleDragOver(event, row.id, "saturday")}
                 onDragLeave={handleDragLeave}
-                colSpan={
-                  hoveredCell?.rowId === row.id && hoveredCell?.day === "saturday"
-                    ? selectedSubjectDuration
-                    : 1
-                }
+                // colSpan={
+                //   hoveredCell?.rowId === row.id && hoveredCell?.day === "saturday"
+                //     ? selectedSubjectDuration
+                //     : 1
+                // }
               >
                 <Cell
                   id={row.id}
@@ -193,6 +211,7 @@ const SubjectsTable = ({
                   setSubject={setSubject}
                   isCellAvailable={isCellAvailable}
                   selectedSubjectDuration={selectedSubjectDuration}
+                  nextCell={nextCell}
                 />
               </td>
             ))}

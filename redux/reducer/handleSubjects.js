@@ -16,6 +16,7 @@ const subjects = [
     ],
     isDropped: false,
     duration: 1,
+    backgroundColor: "#ffc8dd",
     
   },
   {
@@ -35,6 +36,7 @@ const subjects = [
     ],
     isDropped: false,
     duration: 1,
+    backgroundColor: "#d4a373",
     
   },
   {
@@ -51,6 +53,7 @@ const subjects = [
     ],
     isDropped: false,
     duration: 2,
+    backgroundColor: "#ccd5ae",
     
   },
   {
@@ -66,6 +69,7 @@ const subjects = [
     ],
     isDropped: false,
     duration: 2,
+    backgroundColor: "#778da9",
     
   },
   {
@@ -81,6 +85,7 @@ const subjects = [
     ],
     isDropped: false,
     duration: 2,
+    backgroundColor: "#a3b18a",
     
   },
   {
@@ -96,6 +101,7 @@ const subjects = [
     ],
     isDropped: false,
     duration: 1,
+    backgroundColor: "#ffc300",
     
   },
   {
@@ -111,6 +117,7 @@ const subjects = [
     ],
     isDropped: false,
     duration: 1,
+    backgroundColor: "#4a7c59",
    
   },
 ];
