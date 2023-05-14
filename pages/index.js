@@ -82,7 +82,10 @@ export const Cell = ({
     style={{
       backgroundColor:(isCellFilled &&droppedSubjectDuration===2)||(isCellFilled&&droppedSubjectDuration===1)? backgroundColor:"",
       fontWeight:'bolder',
-      border:(isCellFilled&&droppedSubjectDuration===1)? '2px solid':''
+      
+      borderBottom:(isCellFilled)? '3px solid black':'',
+      borderLeft:(isCellFilled)? '2px solid black':'',
+      borderRadius:(isCellFilled)? '15px':'',
     }}
     >
       {subject}
@@ -185,7 +188,37 @@ export default function Home() {
     const isAvailable = subject?.availability?.some(
       (availability) => availability.day === day && availability.time === time
     );
-   
+  //   if (duration === 2) {
+  //     // check next cell availability
+  //     // extract next hour
+  //   const getNextTime = (time) => {
+  //     const timeArray = time.split("-");
+  //     const startTime = timeArray[0];
+  //     const endTime = timeArray[1];
+  //     let nextTime = `${parseInt(startTime) + 1}:00-${parseInt(
+  //       endTime
+  //     ) + 1}:00`;
+  //     nextTime==="9:00-10:00"?nextTime="09:00-10:00":nextTime=nextTime;
+  //     return nextTime;
+  //   };
+
+  //     const nextTime = getNextTime(time);
+  //     console.log("time", time)
+  //     console.log("compare", time==="08:00-09:00")
+  //     console.log("type of time", typeof(time))
+  //     console.log("nextTime", nextTime)
+  //     console.log("day", day)
+  //     const isAvailable2 = subject?.availability?.some(
+  //       (availability) =>
+  //         availability.day === day && availability.time === nextTime
+  //     );
+  //     console.log("isAvailable2", isAvailable2)
+  //     console.log("isAvailable", isAvailable)
+  //     return isAvailable && isAvailable2;
+  //   }
+
+  //   return isAvailable;
+  // };
     
     
     

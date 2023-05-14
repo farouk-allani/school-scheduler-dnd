@@ -27,13 +27,17 @@ const Subject = ({ id, name, duration, backgroundColor }) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        border: "2px solid",
+        // border: "2px solid",
         width: "200px",
         cursor: "move",
         padding: "5px",
         margin: "5px",
         width: widthDuration,
         backgroundColor: backgroundColor,
+        color: "white",
+    borderBottom: "3px solid black",
+    borderLeft: "2px solid black",
+    borderRadius:"15px",
       }}
     >
       {name}
