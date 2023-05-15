@@ -11,6 +11,7 @@ import SubjectsTable from "../components/SubjectsTable";
 import TeacherTable from "../components/TeacherTable";
 import Kesm from "../components/Kesm";
 import { dropKesm, unDropKesm } from "../redux/action";
+import Badge from '@mui/material/Badge'
 
 export const ItemTypes = {
   SUBJECT: "subject",
@@ -18,26 +19,26 @@ export const ItemTypes = {
 
 export const Cell = ({
   id,
-  subject,
+  subjectName,
+  subjectId,
   setSubject,
   day,
   time,
   isCellAvailable,
-  // selectedSubjectDuration
   nextCell,
 }) => {
   const [isCellFilled, setIsCellFilled] = React.useState(false);
-  const [droppedSubjectDuration, setDroppedSubjectDuration] = React.useState(
-    null
-  );
+  const [droppedSubjectDuration, setDroppedSubjectDuration] = React.useState(null);
   const [backgroundColor, setBackgroundColor] = React.useState("");
+  const [dropedSubject, setDropedSubject] = React.useState(null);
+
 
   
   const [{ isOver, canDrop }, drop] = useDrop(() => ({
     
     accept: ItemTypes.SUBJECT,
-    canDrop: (item) => isCellAvailable(item.name, day, time, item.duration),
-    drop: (item) =>  setSubject(id, item.id, day, time),
+    canDrop: (subjectItem) => isCellAvailable(subjectItem.name, day, time, subjectItem.duration),
+    drop: (subjectItem) =>  setSubject(id, subjectItem.id, day, time),
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
@@ -46,38 +47,32 @@ export const Cell = ({
   }));
 
   const isNextCell=nextCell?.rowId===id && nextCell?.day===day
-  
   const subjects = useSelector((state) => state.handleSubjects);
   
 
   useEffect(() => {
-   
-
-    if (subject !== "") {
-       console.log("subject", subject)
-       const subjectString=subject.toString()
-       console.log("Subject=", subjects.filter( (subject) => subject.name === subjectString))
-
-      const duration= subjects.find( (subject) => subject.name == subjectString)?.duration
-      setBackgroundColor(subjects.find( (subject) => subject.name == subjectString)?.backgroundColor)
-       console.log("backgroundColor", backgroundColor)
-      
+    if (subjectId !== null) {
+      const subjectString=subjectId.toString()
+      const duration= subjects.find( (subject) => subject.id == subjectString)?.duration
+      const subject= subjects.find( (subject) => subject.id == subjectString)
+      setDropedSubject(subject)
+      setBackgroundColor(subject?.backgroundColor)
       setIsCellFilled(true);
       setDroppedSubjectDuration(duration);
-      console.log("duration", duration)
     } else {
       setIsCellFilled(false);
       setDroppedSubjectDuration(null);
+      setBackgroundColor("");
+      setDropedSubject(null)
+
     }
-  }, [subject]);
+  }, [subjectId]);
   return (
     <div
       ref={drop}
       className={
         isOver||isNextCell ? (canDrop  ? "cell-over-green" : "cell-over-red") : ( isCellFilled &&droppedSubjectDuration===2? "mergedCell": "cell")
       }
-    //  style={ isOver? {width:`${selectedSubjectDuration*100}px`}:{}  }
-    // style={{width:'auto'}}
 
     style={{
       backgroundColor:(isCellFilled &&droppedSubjectDuration===2)||(isCellFilled&&droppedSubjectDuration===1)? backgroundColor:"",
@@ -88,7 +83,12 @@ export const Cell = ({
       borderRadius:(isCellFilled)? '15px':'',
     }}
     >
-      {subject}
+      {subjectName&&<span className="removeSubjectBtn" > X </span>}
+      <Badge badgeContent={dropedSubject?.classRoom} color="success">
+        <div style={{marginRight:'20px'}}>
+       {subjectName}  
+      </div>
+      </Badge>
     </div>
   );
 };
@@ -132,7 +132,7 @@ export default function Home() {
   const setSubject = (id, subjectId, day, time) => {
     // check if the case is already filled first
 
-    if (rows.find((row) => row.id === id)[day] !== "") {
+    if (rows.find((row) => row.id === id)[day].subjectName !== "") {
       alert("هذه الخانة ممتلئة ");
       return;
     }
@@ -158,7 +158,7 @@ export default function Home() {
     ).name;
     const row = rows.find((row) => row.id === id);
 
-      dispatch(insertSubject(row, day, subjectName));
+      dispatch(insertSubject(row, day, subjectName,subjectId));
 
   };
 
@@ -168,14 +168,14 @@ export default function Home() {
     const row = rows.find((row) => row.id === id);
 
     // switch isDropped to false
-    const subject = subjects.find((subject) => subject.name === row[day]);
+    const subject = subjects.find((subject) => subject.id === row[day].subjectId);
  
     if (subject === undefined) {
       return;
     }
     dispatch(unDropSubject(subject.id));
 
-    dispatch(insertSubject(row, day, ""));
+    dispatch(insertSubject(row, day, "",null));
   };
 
   const isCellAvailable = (subjectName, day, time, duration) => {
@@ -245,7 +245,7 @@ export default function Home() {
           {subjects
             .filter((subject, i) => subject.isDropped === false)
             .map((subject) => (
-              <Subject key={subject.id} id={subject.id} name={subject.name} duration={subject.duration} backgroundColor={subject.backgroundColor} />
+              <Subject key={subject.id} id={subject.id} name={subject.name} duration={subject.duration} backgroundColor={subject.backgroundColor} classRoom={subject.classRoom} />
             ))}
         </div>
 

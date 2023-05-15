@@ -71,10 +71,11 @@ const SubjectsTable = ({
                   id={row.id}
                   day="monday"
                   time={row.time}
-                  subject={row.monday}
+                  subjectName={row.monday.subjectName}
+                  subjectId={row.monday.subjectId}
                   setSubject={setSubject}
                   isCellAvailable={isCellAvailable}
-                  selectedSubjectDuration={selectedSubjectDuration}
+            
                   nextCell={nextCell}
 
                 />
@@ -99,10 +100,11 @@ const SubjectsTable = ({
                   id={row.id}
                   day="tuesday"
                   time={row.time}
-                  subject={row.tuesday}
+                  subjectName={row.tuesday.subjectName}
+                  subjectId={row.tuesday.subjectId}
                   setSubject={setSubject}
                   isCellAvailable={isCellAvailable}
-                  selectedSubjectDuration={selectedSubjectDuration}
+                 
                   nextCell={nextCell}
                 />
               </td>
@@ -126,10 +128,11 @@ const SubjectsTable = ({
                   id={row.id}
                   day="wednesday"
                   time={row.time}
-                  subject={row.wednesday}
+                  subjectName={row.wednesday.subjectName}
+                  subjectId={row.wednesday.subjectId}
                   setSubject={setSubject}
                   isCellAvailable={isCellAvailable}
-                  selectedSubjectDuration={selectedSubjectDuration}
+                
                   nextCell={nextCell}
                 />
               </td>
@@ -153,10 +156,11 @@ const SubjectsTable = ({
                   id={row.id}
                   day="thursday"
                   time={row.time}
-                  subject={row.thursday}
+                  subjectName={row.thursday.subjectName}
+                  subjectId={row.thursday.subjectId}
                   setSubject={setSubject}
                   isCellAvailable={isCellAvailable}
-                  selectedSubjectDuration={selectedSubjectDuration}
+                
                   nextCell={nextCell}
                 />
               </td>
@@ -180,10 +184,11 @@ const SubjectsTable = ({
                   id={row.id}
                   day="friday"
                   time={row.time}
-                  subject={row.friday}
+                  subjectName={row.friday.subjectName}
+                  subjectId={row.friday.subjectId}
                   setSubject={setSubject}
                   isCellAvailable={isCellAvailable}
-                  selectedSubjectDuration={selectedSubjectDuration}
+                
                   nextCell={nextCell}
                 />
               </td>
@@ -207,10 +212,11 @@ const SubjectsTable = ({
                   id={row.id}
                   day="saturday"
                   time={row.time}
-                  subject={row.saturday}
+                  subjectName={row.saturday.subjectName}
+                  subjectId={row.saturday.subjectId}
                   setSubject={setSubject}
                   isCellAvailable={isCellAvailable}
-                  selectedSubjectDuration={selectedSubjectDuration}
+              
                   nextCell={nextCell}
                 />
               </td>
