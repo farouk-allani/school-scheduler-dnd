@@ -10,7 +10,7 @@ import { insertSubject } from "../redux/action";
 import SubjectsTable from "../components/SubjectsTable";
 import TeacherTable from "../components/TeacherTable";
 import Kesm from "../components/Kesm";
-import { dropKesm, unDropKesm } from "../redux/action";
+import { dropKesm, unDropKesm , insertKesm} from "../redux/action";
 import Badge from '@mui/material/Badge'
 
 export const ItemTypes = {
@@ -71,7 +71,7 @@ export const Cell = ({
     <div
       ref={drop}
       className={
-        isOver||isNextCell ? (canDrop  ? "cell-over-green" : "cell-over-red") : ( isCellFilled &&droppedSubjectDuration===2? "mergedCell": "cell")
+        (isOver&&!isCellFilled)||isNextCell ? (canDrop  ? "cell-over-green" : "cell-over-red") : ( isCellFilled &&droppedSubjectDuration===2? "mergedCell": "cell")
       }
 
     style={{
@@ -102,8 +102,13 @@ export default function Home() {
 
   const dispatch = useDispatch();
 
-  const setKesm = (kesmId, dayAndTime) => {
-    dispatch(dropKesm(kesmId, dayAndTime));
+  const setKesm = (rowId,kesmId, day,time) => {
+    dispatch(dropKesm(kesmId));
+    const row = kesmRows.find((row) => row.id === rowId);
+    const kesmName = aksem.find((kesm) => kesm.id === kesmId).name;
+    const kesmSubject = aksem.find((kesm) => kesm.id === kesmId).subjectName;
+    dispatch(insertKesm(row, day,kesmName,kesmSubject, kesmId))
+    
   };
   const emptyKesmCell = (kesmId) => {
     dispatch(unDropKesm(kesmId));
@@ -264,8 +269,9 @@ export default function Home() {
         .map((kesm)=>(
           <Kesm
           key={kesm.id}
-          id={kesm.id}
-          name={kesm.name}
+          kesmId={kesm.id}
+          kesmName={kesm.name}
+          subjectName={kesm.subjectName}
           />
 
         ))

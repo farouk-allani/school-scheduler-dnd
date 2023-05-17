@@ -1,6 +1,6 @@
 const subjects = [
   {
-    id: "رياضيات",
+    id: "1رياضيات",
     name: "رياضيات",
     teacher: {
       id: 1,
@@ -16,6 +16,72 @@ const subjects = [
     ],
     isDropped: false,
     duration: 1,
+    backgroundColor: "#ffc8dd",
+    kesm: "سنة أولى إبتدائي الشابي",
+    classRoom: "A1",
+    
+  },
+  {
+    id: "2رياضيات",
+    name: "رياضيات",
+    teacher: {
+      id: 1,
+      name: "Ms. Smith",
+    },
+    availability: [
+      { day: "monday", time: "10:00-09:00" },
+      { day: "tuesday", time: "10:00-09:00" },
+      { day: "wednesday", time: "14:00-13:00" },
+      { day: "friday", time: "14:00-13:00"},
+      { day: "saturday", time: "14:00-13:00"},
+      { day: "saturday", time: "09:00-08:00"}
+    ],
+    isDropped: false,
+    duration: 1,
+    backgroundColor: "#ffc8dd",
+    kesm: "سنة أولى إبتدائي الشابي",
+    classRoom: "A1",
+    
+  },
+  {
+    id: "3رياضيات",
+    name: "رياضيات",
+    teacher: {
+      id: 1,
+      name: "Ms. Smith",
+    },
+    availability: [
+      { day: "monday", time: "10:00-09:00" },
+      { day: "tuesday", time: "10:00-09:00" },
+      { day: "wednesday", time: "14:00-13:00" },
+      { day: "friday", time: "14:00-13:00"},
+      { day: "saturday", time: "14:00-13:00"},
+      { day: "saturday", time: "09:00-08:00"}
+    ],
+    isDropped: false,
+    duration: 1,
+    backgroundColor: "#ffc8dd",
+    kesm: "سنة أولى إبتدائي الشابي",
+    classRoom: "A1",
+    
+  },
+  {
+    id: "4رياضيات",
+    name: "رياضيات",
+    teacher: {
+      id: 1,
+      name: "Ms. Smith",
+    },
+    availability: [
+      { day: "monday", time: "10:00-09:00" },
+      { day: "tuesday", time: "10:00-09:00" },
+      { day: "wednesday", time: "14:00-13:00" },
+      { day: "friday", time: "14:00-13:00"},
+      { day: "saturday", time: "14:00-13:00"},
+      { day: "saturday", time: "09:00-08:00"}
+    ],
+    isDropped: false,
+    duration: 2,
     backgroundColor: "#ffc8dd",
     kesm: "سنة أولى إبتدائي الشابي",
     classRoom: "A1",
@@ -45,7 +111,7 @@ const subjects = [
     
   },
   {
-    id: "عربية",
+    id: "1عربية",
     name: "عربية",
     teacher: {
       id: 3,
@@ -64,8 +130,8 @@ const subjects = [
       { day: "saturday", time: "10:00-09:00" }
     ],
     isDropped: false,
-    duration: 2,
-    backgroundColor: "#ccd5ae",
+    duration: 1,
+    backgroundColor: "#61876E",
     kesm: "سنة أولى إبتدائي الشابي",
     classRoom: "A1",
 
@@ -92,9 +158,9 @@ const subjects = [
     ],
     isDropped: false,
     duration: 1,
-    backgroundColor: "#ccd5ae",
+    backgroundColor: "#61876E",
     kesm: "سنة أولى إبتدائي الشابي",
-    classRoom: "A2",
+    classRoom: "A1",
 
     
   },
@@ -118,8 +184,89 @@ const subjects = [
       { day: "saturday", time: "10:00-09:00" }
     ],
     isDropped: false,
+    duration: 1,
+    backgroundColor: "#61876E",
+    kesm: "سنة أولى إبتدائي الشابي",
+    classRoom: "A1",
+
+    
+  },
+  {
+    id: "4عربية",
+    name: "عربية",
+    teacher: {
+      id: 3,
+      name: "Ms. Smith",
+    },
+    availability: [
+      { day: "monday", time: "10:00-09:00" },
+      { day: "monday", time: "11:00-10:00" },
+      { day: "wednesday", time: "14:00-13:00" },
+      { day: "wednesday", time: "15:00-14:00" },
+      { day: "friday", time: "14:00-13:00" },
+      { day: "friday", time: "15:00-14:00" },
+      { day: "saturday", time: "14:00-13:00" },
+      { day: "saturday", time: "15:00-14:00" },
+      { day: "saturday", time: "09:00-08:00" },
+      { day: "saturday", time: "10:00-09:00" }
+    ],
+    isDropped: false,
+    duration: 1,
+    backgroundColor: "#61876E",
+    kesm: "سنة أولى إبتدائي الشابي",
+    classRoom: "A1",
+
+    
+  },
+  {
+    id: "5عربية",
+    name: "عربية",
+    teacher: {
+      id: 3,
+      name: "Ms. Smith",
+    },
+    availability: [
+      { day: "monday", time: "10:00-09:00" },
+      { day: "monday", time: "11:00-10:00" },
+      { day: "wednesday", time: "14:00-13:00" },
+      { day: "wednesday", time: "15:00-14:00" },
+      { day: "friday", time: "14:00-13:00" },
+      { day: "friday", time: "15:00-14:00" },
+      { day: "saturday", time: "14:00-13:00" },
+      { day: "saturday", time: "15:00-14:00" },
+      { day: "saturday", time: "09:00-08:00" },
+      { day: "saturday", time: "10:00-09:00" }
+    ],
+    isDropped: false,
     duration: 2,
-    backgroundColor: "#ccd5ae",
+    backgroundColor: "#61876E",
+    kesm: "سنة أولى إبتدائي الشابي",
+    classRoom: "A2",
+
+    
+  },
+  {
+    id: "6عربية",
+    name: "عربية",
+    teacher: {
+      id: 3,
+      name: "Ms. Smith",
+    },
+    availability: [
+      { day: "monday", time: "10:00-09:00" },
+      { day: "monday", time: "11:00-10:00" },
+      { day: "wednesday", time: "14:00-13:00" },
+      { day: "wednesday", time: "15:00-14:00" },
+      { day: "friday", time: "14:00-13:00" },
+      { day: "friday", time: "15:00-14:00" },
+      { day: "saturday", time: "14:00-13:00" },
+      { day: "saturday", time: "15:00-14:00" },
+      { day: "saturday", time: "09:00-08:00" },
+      { day: "saturday", time: "10:00-09:00" }
+    ],
+    isDropped: false,
+    duration: 2,
+    backgroundColor: "#61876E",
     kesm: "سنة أولى إبتدائي الشابي",
     classRoom: "A3",
 
@@ -145,7 +292,7 @@ const subjects = [
       { day: "saturday", time: "10:00-09:00" }
     ],
     isDropped: false,
-    duration: 2,
+    duration: 1,
     backgroundColor: "#778da9",
     kesm: "سنة أولى إبتدائي الشابي",
     classRoom: "A1",
@@ -172,7 +319,7 @@ const subjects = [
       { day: "saturday", time: "10:00-09:00" }
     ],
     isDropped: false,
-    duration: 2,
+    duration: 1,
     backgroundColor: "#a3b18a",
     kesm: "سنة أولى إبتدائي الشابي",
     classRoom: "A1",
@@ -229,7 +376,167 @@ const subjects = [
     ,
     isDropped: false,
     duration: 1,
-    backgroundColor: "#4a7c59",
+    backgroundColor: "#9D3C72",
+    kesm: "سنة أولى إبتدائي الشابي",
+    classRoom: "A2",
+
+   
+  },
+  {
+    id: "ت.موسيقية",
+    name: "ت.موسيقية",
+    teacher: {
+      id: 7,
+      name: "Ms. Smith",
+    },
+    availability: [
+      { day: "monday", time: "10:00-09:00" },
+      { day: "wednesday", time: "14:00-13:00" },
+      { day: "friday", time: "14:00-13:00" },
+      { day: "saturday", time: "14:00-13:00" },
+      { day: "saturday", time: "09:00-08:00" },
+      { day: "monday", time: "12:00-11:00" },
+      { day: "tuesday", time: "10:00-09:00" },
+      { day: "thursday", time: "14:00-13:00" },
+      { day: "friday", time: "14:00-13:00" },
+      { day: "saturday", time: "14:00-13:00" },
+      { day: "saturday", time: "09:00-08:00" },
+      { day: "monday", time: "12:00-11:00" },
+      { day: "tuesday", time: "10:00-09:00" },
+      { day: "thursday", time: "16:00-15:00" }
+    ]
+    ,
+    isDropped: false,
+    duration: 1,
+    backgroundColor: "#C780FA",
+    kesm: "سنة أولى إبتدائي الشابي",
+    classRoom: "A2",
+
+   
+  },
+  {
+    id: "فرنسية",
+    name: "فرنسية",
+    teacher: {
+      id: 7,
+      name: "Ms. Smith",
+    },
+    availability: [
+      { day: "monday", time: "10:00-09:00" },
+      { day: "wednesday", time: "14:00-13:00" },
+      { day: "friday", time: "14:00-13:00" },
+      { day: "saturday", time: "14:00-13:00" },
+      { day: "saturday", time: "09:00-08:00" },
+      { day: "monday", time: "12:00-11:00" },
+      { day: "tuesday", time: "10:00-09:00" },
+      { day: "thursday", time: "14:00-13:00" },
+      { day: "friday", time: "14:00-13:00" },
+      { day: "saturday", time: "14:00-13:00" },
+      { day: "saturday", time: "09:00-08:00" },
+      { day: "monday", time: "12:00-11:00" },
+      { day: "tuesday", time: "10:00-09:00" },
+      { day: "thursday", time: "16:00-15:00" }
+    ]
+    ,
+    isDropped: false,
+    duration: 1,
+    backgroundColor: "#DF2E38",
+    kesm: "سنة أولى إبتدائي الشابي",
+    classRoom: "A2",
+
+   
+  },
+  {
+    id: "2فرنسية",
+    name: "فرنسية",
+    teacher: {
+      id: 7,
+      name: "Ms. Smith",
+    },
+    availability: [
+      { day: "monday", time: "10:00-09:00" },
+      { day: "wednesday", time: "14:00-13:00" },
+      { day: "friday", time: "14:00-13:00" },
+      { day: "saturday", time: "14:00-13:00" },
+      { day: "saturday", time: "09:00-08:00" },
+      { day: "monday", time: "12:00-11:00" },
+      { day: "tuesday", time: "10:00-09:00" },
+      { day: "thursday", time: "14:00-13:00" },
+      { day: "friday", time: "14:00-13:00" },
+      { day: "saturday", time: "14:00-13:00" },
+      { day: "saturday", time: "09:00-08:00" },
+      { day: "monday", time: "12:00-11:00" },
+      { day: "tuesday", time: "10:00-09:00" },
+      { day: "thursday", time: "16:00-15:00" }
+    ]
+    ,
+    isDropped: false,
+    duration: 1,
+    backgroundColor: "#DF2E38",
+    kesm: "سنة أولى إبتدائي الشابي",
+    classRoom: "A2",
+
+   
+  },
+  {
+    id: "3فرنسية",
+    name: "فرنسية",
+    teacher: {
+      id: 7,
+      name: "Ms. Smith",
+    },
+    availability: [
+      { day: "monday", time: "10:00-09:00" },
+      { day: "wednesday", time: "14:00-13:00" },
+      { day: "friday", time: "14:00-13:00" },
+      { day: "saturday", time: "14:00-13:00" },
+      { day: "saturday", time: "09:00-08:00" },
+      { day: "monday", time: "12:00-11:00" },
+      { day: "tuesday", time: "10:00-09:00" },
+      { day: "thursday", time: "14:00-13:00" },
+      { day: "friday", time: "14:00-13:00" },
+      { day: "saturday", time: "14:00-13:00" },
+      { day: "saturday", time: "09:00-08:00" },
+      { day: "monday", time: "12:00-11:00" },
+      { day: "tuesday", time: "10:00-09:00" },
+      { day: "thursday", time: "16:00-15:00" }
+    ]
+    ,
+    isDropped: false,
+    duration: 2,
+    backgroundColor: "#DF2E38",
+    kesm: "سنة أولى إبتدائي الشابي",
+    classRoom: "A2",
+
+   
+  },
+  {
+    id: "ت.اسلامية",
+    name: "ت.اسلامية",
+    teacher: {
+      id: 7,
+      name: "Ms. Smith",
+    },
+    availability: [
+      { day: "monday", time: "10:00-09:00" },
+      { day: "wednesday", time: "14:00-13:00" },
+      { day: "friday", time: "14:00-13:00" },
+      { day: "saturday", time: "14:00-13:00" },
+      { day: "saturday", time: "09:00-08:00" },
+      { day: "monday", time: "12:00-11:00" },
+      { day: "tuesday", time: "10:00-09:00" },
+      { day: "thursday", time: "14:00-13:00" },
+      { day: "friday", time: "14:00-13:00" },
+      { day: "saturday", time: "14:00-13:00" },
+      { day: "saturday", time: "09:00-08:00" },
+      { day: "monday", time: "12:00-11:00" },
+      { day: "tuesday", time: "10:00-09:00" },
+      { day: "thursday", time: "16:00-15:00" }
+    ]
+    ,
+    isDropped: false,
+    duration: 1,
+    backgroundColor: "#DE7119",
     kesm: "سنة أولى إبتدائي الشابي",
     classRoom: "A2",
 

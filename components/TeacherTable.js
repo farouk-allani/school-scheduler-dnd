@@ -17,10 +17,11 @@ const TeacherTable = ({ kesmRows, setKesm,emptyKesmCell,isKesmCellAvailable }) =
                 {kesmRows.map((row) => (
                   <td key={row.id} onClick={() => emptyKesmCell(row.id, "monday")}>
                     <KesmCell
-                      id={row.id}
+                      rowId={row.id}
                       day="monday"
                       time={row.time}
-                      class={row.monday}
+                      kesmName={row.monday.kesmName}
+                      kesmSubject={row.monday.kesmSubject}
                       setKesm={setKesm}
                       isKesmCellAvailable={isKesmCellAvailable}
                       
@@ -33,10 +34,11 @@ const TeacherTable = ({ kesmRows, setKesm,emptyKesmCell,isKesmCellAvailable }) =
                 {kesmRows.map((row) => (
                   <td key={row.id} onClick={() => emptyKesmCell(row.id, "tuesday")}>
                     <KesmCell
-                      id={row.id}
+                      rowId={row.id}
                       day="tuesday"
                       time={row.time}
-                      class={row.tuesday}
+                      kesmName={row.tuesday.kesmName}
+                      kesmSubject={row.tuesday.kesmSubject}
                       setKesm={setKesm}
                       isKesmCellAvailable={isKesmCellAvailable}
                     />
@@ -51,10 +53,11 @@ const TeacherTable = ({ kesmRows, setKesm,emptyKesmCell,isKesmCellAvailable }) =
                     onClick={() => emptyKesmCell(row.id, "wednesday")}
                   >
                     <KesmCell
-                      id={row.id}
+                      rowId={row.id}
                       day="wednesday"
                       time={row.time}
-                      class={row.wednesday}
+                      kesmName={row.wednesday.kesmName}
+                      kesmSubject={row.wednesday.kesmSubject}
                       setKesm={setKesm}
                       isKesmCellAvailable={isKesmCellAvailable}
                     />
@@ -69,10 +72,11 @@ const TeacherTable = ({ kesmRows, setKesm,emptyKesmCell,isKesmCellAvailable }) =
                     onClick={() => emptyKesmCell(row.id, "thursday")}
                   >
                     <KesmCell
-                      id={row.id}
+                     rowId={row.id}
                       day="thursday"
                       time={row.time}
-                      class={row.thursday}
+                      kesmName={row.thursday.kesmName}
+                      kesmSubject={row.thursday.kesmSubject}
                       setKesm={setKesm}
                       isKesmCellAvailable={isKesmCellAvailable}
                     />
@@ -84,10 +88,11 @@ const TeacherTable = ({ kesmRows, setKesm,emptyKesmCell,isKesmCellAvailable }) =
                 {kesmRows.map((row) => (
                   <td key={row.id} onClick={() => emptyKesmCell(row.id, "friday")}>
                     <KesmCell
-                      id={row.id}
+                      rowId={row.id}
                       day="friday"
                       time={row.time}
-                      class={row.friday}
+                      kesmName={row.friday.kesmName}
+                      kesmSubject={row.friday.kesmSubject}
                       setKesm={setKesm}
                       isKesmCellAvailable={isKesmCellAvailable}
                     />
@@ -102,10 +107,11 @@ const TeacherTable = ({ kesmRows, setKesm,emptyKesmCell,isKesmCellAvailable }) =
                     onClick={() => emptyKesmCell(row.id, "saturday")}
                   >
                     <KesmCell
-                      id={row.id}
+                      rowId={row.id}
                       day="saturday"
                       time={row.time}
-                      class={row.saturday}
+                      kesmName={row.saturday.kesmName}
+                      kesmSubject={row.saturday.kesmSubject}
                       setKesm={setKesm}
                       isKesmCellAvailable={isKesmCellAvailable}
                     />

@@ -15,7 +15,7 @@ const Subject = ({ id, name, duration, backgroundColor,classRoom }) => {
       isDragging: monitor.isDragging(),
     }),
   }));
-  console.log("backgroundColor", backgroundColor);
+ 
   const widthDuration = `${duration * 100}px`;
 
   return (
@@ -30,7 +30,7 @@ const Subject = ({ id, name, duration, backgroundColor,classRoom }) => {
         alignItems: "center",
         justifyContent: "center",
         // border: "2px solid",
-        width: "200px",
+        // width: "200px",
         cursor: "move",
         padding: "5px",
         margin: "5px",

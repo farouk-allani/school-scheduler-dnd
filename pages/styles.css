@@ -52,6 +52,8 @@
   td{
     background-color: rgb(23,162,184,0.2);
     position: relative;
+    text-align: center;
+    font-weight: bolder;
     /* min-width: 100px; */
   }
 

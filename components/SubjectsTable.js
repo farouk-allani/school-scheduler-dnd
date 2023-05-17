@@ -14,10 +14,24 @@ const SubjectsTable = ({
 
   const [hoveredCell, setHoveredCell] = useState(null);
   const [nextCell, setNextCell] = useState(null);
-  const subjects = useSelector((state) => state.handleSubjects);
+  
+  const subjectsRows = useSelector((state) => state.handleRows);
 
   const handleDragOver = (event, rowId, day) => {
+    console.log("handleDragOver", rowId, day)
     event.preventDefault();
+    // check if the cell is filled
+    const isCellFilled = subjectsRows.find(
+      (row) => row.id === rowId && row[day].subjectName !== ""
+    );
+    console.log("subjectsRow", subjectsRows)
+    console.log("isCellFilled", isCellFilled)
+    if (isCellFilled){
+      setHoveredCell(null);
+      setNextCell(null)
+      return;
+    }
+
     setHoveredCell({ rowId, day });
     if(selectedSubjectDuration===2){
       setNextCell({rowId:rowId+1, day})

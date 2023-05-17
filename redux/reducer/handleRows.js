@@ -107,6 +107,7 @@ const rows = [
         
         const {row ,day, subjectName,subjectId} = action.payload;
         const newState = [...state];
+        console.log("newState", newState)
         const index = newState.findIndex((item) => item.id === row.id);
         newState[index][day] = {subjectName, subjectId};
         
