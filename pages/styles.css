@@ -91,3 +91,19 @@
     opacity: 1;
     cursor: pointer;
   }
+
+  .myAccordion {
+    /* Styles for the Accordion root element */
+    background-color: #F5F1EB;
+    border-radius: 10px 10px 10px 10px; 
+    margin-top: 20px;
+    box-shadow: 0 10px 50px 0 rgba(26,46,85,.1);
+  }
+  .MuiButtonBase-root ::after{
+    content: none !important;
+  }
+  
+  .MuiAccordion::before {
+    content: none !important;
+    background-color: aqua;
+  }

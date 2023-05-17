@@ -11,6 +11,12 @@ import SubjectsTable from "../components/SubjectsTable";
 import TeacherTable from "../components/TeacherTable";
 import Kesm from "../components/Kesm";
 import { dropKesm, unDropKesm , insertKesm} from "../redux/action";
+// ** MUI Imports
+import Accordion from '@mui/material/Accordion'
+import Typography from '@mui/material/Typography'
+import AccordionSummary from '@mui/material/AccordionSummary'
+import AccordionDetails from '@mui/material/AccordionDetails'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Badge from '@mui/material/Badge'
 
 export const ItemTypes = {
@@ -245,6 +251,16 @@ export default function Home() {
           selectedSubjectDuration={selectedSubjectDuration}
 
         />
+        <Accordion classes={{ root: 'myAccordion' }}>
+        <AccordionSummary
+        classes={{ root: 'MuiAccordion' }}
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography style={{}} >الحصص</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
 
         <div className={styles.subjects}>
           {subjects
@@ -253,6 +269,8 @@ export default function Home() {
               <Subject key={subject.id} id={subject.id} name={subject.name} duration={subject.duration} backgroundColor={subject.backgroundColor} classRoom={subject.classRoom} />
             ))}
         </div>
+        </AccordionDetails>
+      </Accordion>
 
         <div className={styles.teacherName} >
           Teacher: Arabic Teacher
