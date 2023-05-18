@@ -293,7 +293,7 @@ export default function Home() {
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Typography style={{}}>الحصص</Typography>
+            <Typography style={{fontFamily:"Vazirmatn",fontWeight:'700'}}>الحصص</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <div className={styles.subjects}>
