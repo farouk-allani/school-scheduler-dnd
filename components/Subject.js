@@ -1,12 +1,12 @@
 import { useDrag } from "react-dnd";
 import React from "react";
-import Badge from '@mui/material/Badge'
+import Badge from "@mui/material/Badge";
 
 export const ItemTypes = {
   SUBJECT: "subject",
 };
 
-const Subject = ({ id, name, duration, backgroundColor,classRoom }) => {
+const Subject = ({ id, name, duration, backgroundColor, classRoom }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.SUBJECT,
     item: { id, name, duration },
@@ -15,11 +15,10 @@ const Subject = ({ id, name, duration, backgroundColor,classRoom }) => {
       isDragging: monitor.isDragging(),
     }),
   }));
- 
+
   const widthDuration = `${duration * 100}px`;
 
   return (
-    
     <div
       ref={drag}
       style={{
@@ -37,18 +36,18 @@ const Subject = ({ id, name, duration, backgroundColor,classRoom }) => {
         width: widthDuration,
         backgroundColor: backgroundColor,
         color: "white",
-    borderBottom: "3px solid black",
-    borderLeft: "2px solid black",
-    borderRadius:"15px",
+        borderBottom: "3px solid black",
+        borderLeft: "2px solid black",
+        borderRadius: "15px", 
       }}
     >
-      <Badge badgeContent={classRoom} color="success">
-        <div style={{marginRight:'20px'}}>
-      {name}
-        </div>
-      </Badge> 
+      {classRoom !== "" && (
+        <Badge badgeContent={classRoom} color="success">
+          <div style={{ marginRight: "20px" }}>{name}</div>
+        </Badge>
+      )}
+      {classRoom === "" && <div style={{ marginRight: "20px" }}>{name}</div>}
     </div>
-   
   );
 };
 

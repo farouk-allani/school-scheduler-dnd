@@ -18,7 +18,7 @@ const subjects = [
     duration: 1,
     backgroundColor: "#ffc8dd",
     kesm: "سنة أولى إبتدائي الشابي",
-    classRoom: "A1",
+    classRoom: undefined,
     
   },
   {
@@ -40,7 +40,7 @@ const subjects = [
     duration: 1,
     backgroundColor: "#ffc8dd",
     kesm: "سنة أولى إبتدائي الشابي",
-    classRoom: "A1",
+    classRoom: undefined,
     
   },
   {
@@ -62,7 +62,7 @@ const subjects = [
     duration: 1,
     backgroundColor: "#ffc8dd",
     kesm: "سنة أولى إبتدائي الشابي",
-    classRoom: "A1",
+    classRoom: undefined,
     
   },
   {
@@ -84,7 +84,7 @@ const subjects = [
     duration: 2,
     backgroundColor: "#ffc8dd",
     kesm: "سنة أولى إبتدائي الشابي",
-    classRoom: "A1",
+    classRoom: undefined,
     
   },
   {
@@ -106,7 +106,7 @@ const subjects = [
     duration: 1,
     backgroundColor: "#d4a373",
     kesm: "سنة أولى إبتدائي الشابي",
-    classRoom: "1S1",
+    classRoom: undefined,
 
     
   },
@@ -133,7 +133,7 @@ const subjects = [
     duration: 1,
     backgroundColor: "#61876E",
     kesm: "سنة أولى إبتدائي الشابي",
-    classRoom: "A1",
+    classRoom: undefined,
 
     
   },
@@ -160,7 +160,7 @@ const subjects = [
     duration: 1,
     backgroundColor: "#61876E",
     kesm: "سنة أولى إبتدائي الشابي",
-    classRoom: "A1",
+    classRoom: undefined,
 
     
   },
@@ -187,7 +187,7 @@ const subjects = [
     duration: 1,
     backgroundColor: "#61876E",
     kesm: "سنة أولى إبتدائي الشابي",
-    classRoom: "A1",
+    classRoom: undefined,
 
     
   },
@@ -214,7 +214,7 @@ const subjects = [
     duration: 1,
     backgroundColor: "#61876E",
     kesm: "سنة أولى إبتدائي الشابي",
-    classRoom: "A1",
+    classRoom: undefined,
 
     
   },
@@ -241,7 +241,7 @@ const subjects = [
     duration: 2,
     backgroundColor: "#61876E",
     kesm: "سنة أولى إبتدائي الشابي",
-    classRoom: "A2",
+    classRoom: undefined,
 
     
   },
@@ -268,7 +268,7 @@ const subjects = [
     duration: 2,
     backgroundColor: "#61876E",
     kesm: "سنة أولى إبتدائي الشابي",
-    classRoom: "A3",
+    classRoom: undefined,
 
     
   },
@@ -295,7 +295,7 @@ const subjects = [
     duration: 1,
     backgroundColor: "#778da9",
     kesm: "سنة أولى إبتدائي الشابي",
-    classRoom: "A1",
+    classRoom: undefined,
 
     
   },
@@ -322,7 +322,7 @@ const subjects = [
     duration: 1,
     backgroundColor: "#a3b18a",
     kesm: "سنة أولى إبتدائي الشابي",
-    classRoom: "A1",
+    classRoom: undefined,
 
     
   },
@@ -346,7 +346,7 @@ const subjects = [
     duration: 1,
     backgroundColor: "#ffc300",
     kesm: "سنة أولى إبتدائي الشابي",
-    classRoom: "A2",
+    classRoom: undefined,
 
     
   },
@@ -378,7 +378,7 @@ const subjects = [
     duration: 1,
     backgroundColor: "#9D3C72",
     kesm: "سنة أولى إبتدائي الشابي",
-    classRoom: "A2",
+    classRoom: undefined,
 
    
   },
@@ -410,7 +410,7 @@ const subjects = [
     duration: 1,
     backgroundColor: "#C780FA",
     kesm: "سنة أولى إبتدائي الشابي",
-    classRoom: "A2",
+    classRoom: undefined,
 
    
   },
@@ -442,7 +442,7 @@ const subjects = [
     duration: 1,
     backgroundColor: "#DF2E38",
     kesm: "سنة أولى إبتدائي الشابي",
-    classRoom: "A2",
+    classRoom: undefined,
 
    
   },
@@ -474,7 +474,7 @@ const subjects = [
     duration: 1,
     backgroundColor: "#DF2E38",
     kesm: "سنة أولى إبتدائي الشابي",
-    classRoom: "A2",
+    classRoom: undefined,
 
    
   },
@@ -506,7 +506,7 @@ const subjects = [
     duration: 2,
     backgroundColor: "#DF2E38",
     kesm: "سنة أولى إبتدائي الشابي",
-    classRoom: "A2",
+    classRoom: undefined,
 
    
   },
@@ -538,7 +538,7 @@ const subjects = [
     duration: 1,
     backgroundColor: "#DE7119",
     kesm: "سنة أولى إبتدائي الشابي",
-    classRoom: "A2",
+    classRoom: undefined,
 
    
   },
@@ -569,10 +569,18 @@ const handleSubjects = (state = subjects, action) => {
             return subject;
           }
         });
-       
-        
-   
 
+        case "ADD_CLASSROOM":
+          return state.map((subject) => {
+            if (subject.id === action.payload.dropedSubject.id) {
+              return {
+                ...subject,
+                classRoom: action.payload.classRoom,
+              };
+            } else {
+              return subject;
+            }
+          });
 
     default:
       return state;

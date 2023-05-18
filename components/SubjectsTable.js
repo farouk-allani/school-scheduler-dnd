@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import styles from "../styles/Home.module.css";
 import { Cell } from "../pages/index";
 import { useSelector } from "react-redux";
+import SelectClassroomDialog from "./selectClassroomDialog";
 
 
 const SubjectsTable = ({
@@ -14,11 +15,12 @@ const SubjectsTable = ({
 
   const [hoveredCell, setHoveredCell] = useState(null);
   const [nextCell, setNextCell] = useState(null);
+  const [openClassroom, setOpenClassroom] = useState(false);
+  const [dropedSubject,setDropedSubject]= useState(false);
   
   const subjectsRows = useSelector((state) => state.handleRows);
 
   const handleDragOver = (event, rowId, day) => {
-    console.log("handleDragOver", rowId, day)
     event.preventDefault();
     // check if the cell is filled
     const isCellFilled = subjectsRows.find(
@@ -43,10 +45,22 @@ const SubjectsTable = ({
     setHoveredCell(null);
     setNextCell(null)
   };
+  const handleOpenClassroom = (dropedSubject) => {
+  setDropedSubject(dropedSubject);
+  setOpenClassroom(true);
+  };
+  const handleCloseClassroom = () => {
+    setOpenClassroom(false);
+  };
 
 
   return (
     <div className={styles.table}>
+      <SelectClassroomDialog
+        handleCloseClassroom={handleCloseClassroom}
+        openClassroom={openClassroom}
+        dropedSubject={dropedSubject}
+         />
       <table>
         <tbody>
           <tr>
@@ -61,7 +75,7 @@ const SubjectsTable = ({
               <td
                 
                 key={row.id}
-                onClick={() => emptyCell(row.id, "monday")}
+               
                 onDragOver={(event) => handleDragOver(event, row.id, "monday")}
                 onDragLeave={handleDragLeave}
                 onDrop={(event) => {
@@ -70,16 +84,7 @@ const SubjectsTable = ({
 
                 }
               }
-      // colSpan={
-      //   //check if cell is filled then the colspan will be the duration of the subject
-      //   subjects.find((subject) => subject.id === row.monday)?.duration ||  
-        
-        
-      //   //check if cell is hovered the colspan will be the duration of the selected subject
-      //   hoveredCell?.rowId === row.id && hoveredCell?.day === "monday"
-      //     ? selectedSubjectDuration
-      //     : 1
-      // }
+
               >
                 <Cell
                   id={row.id}
@@ -89,8 +94,9 @@ const SubjectsTable = ({
                   subjectId={row.monday.subjectId}
                   setSubject={setSubject}
                   isCellAvailable={isCellAvailable}
-            
                   nextCell={nextCell}
+                  emptyCell={emptyCell}
+                  handleOpenClassroom={handleOpenClassroom}
 
                 />
               </td>
@@ -101,14 +107,9 @@ const SubjectsTable = ({
             {rows.map((row) => (
               <td
                 key={row.id}
-                onClick={() => emptyCell(row.id, "tuesday")}
+                
                 onDragOver={(event) => handleDragOver(event, row.id, "tuesday")}
                 onDragLeave={handleDragLeave}
-                // colSpan={
-                //   hoveredCell?.rowId === row.id && hoveredCell?.day === "tuesday"
-                //     ? selectedSubjectDuration
-                //     : 1
-                // }
               >
                 <Cell
                   id={row.id}
@@ -117,9 +118,10 @@ const SubjectsTable = ({
                   subjectName={row.tuesday.subjectName}
                   subjectId={row.tuesday.subjectId}
                   setSubject={setSubject}
-                  isCellAvailable={isCellAvailable}
-                 
+                  isCellAvailable={isCellAvailable}       
                   nextCell={nextCell}
+                  emptyCell={emptyCell}
+                  handleOpenClassroom={handleOpenClassroom}
                 />
               </td>
             ))}
@@ -129,7 +131,7 @@ const SubjectsTable = ({
             {rows.map((row) => (
               <td
                 key={row.id}
-                onClick={() => emptyCell(row.id, "wednesday")}
+               
                 onDragOver={(event) => handleDragOver(event, row.id, "wednesday")}
                 onDragLeave={handleDragLeave}
                 // colSpan={
@@ -146,8 +148,9 @@ const SubjectsTable = ({
                   subjectId={row.wednesday.subjectId}
                   setSubject={setSubject}
                   isCellAvailable={isCellAvailable}
-                
                   nextCell={nextCell}
+                  emptyCell={emptyCell}
+                  handleOpenClassroom={handleOpenClassroom}
                 />
               </td>
             ))}
@@ -157,7 +160,7 @@ const SubjectsTable = ({
             {rows.map((row) => (
               <td
                 key={row.id}
-                onClick={() => emptyCell(row.id, "thursday")}
+                
                 onDragOver={(event) => handleDragOver(event, row.id, "thursday")}
                 onDragLeave={handleDragLeave}
                 // colSpan={
@@ -176,6 +179,8 @@ const SubjectsTable = ({
                   isCellAvailable={isCellAvailable}
                 
                   nextCell={nextCell}
+                  emptyCell={emptyCell}
+                  handleOpenClassroom={handleOpenClassroom}
                 />
               </td>
             ))}
@@ -185,7 +190,7 @@ const SubjectsTable = ({
             {rows.map((row) => (
               <td
                 key={row.id}
-                onClick={() => emptyCell(row.id, "friday")}
+                
                 onDragOver={(event) => handleDragOver(event, row.id, "friday")}
                 onDragLeave={handleDragLeave}
                 // colSpan={
@@ -204,6 +209,8 @@ const SubjectsTable = ({
                   isCellAvailable={isCellAvailable}
                 
                   nextCell={nextCell}
+                  emptyCell={emptyCell}
+                  handleOpenClassroom={handleOpenClassroom}
                 />
               </td>
             ))}
@@ -213,7 +220,7 @@ const SubjectsTable = ({
             {rows.map((row) => (
               <td
                 key={row.id}
-                onClick={() => emptyCell(row.id, "saturday")}
+              
                 onDragOver={(event) => handleDragOver(event, row.id, "saturday")}
                 onDragLeave={handleDragLeave}
                 // colSpan={
@@ -232,6 +239,8 @@ const SubjectsTable = ({
                   isCellAvailable={isCellAvailable}
               
                   nextCell={nextCell}
+                  emptyCell={emptyCell}
+                  handleOpenClassroom={handleOpenClassroom}
                 />
               </td>
             ))}

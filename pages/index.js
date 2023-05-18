@@ -23,6 +23,16 @@ export const ItemTypes = {
   SUBJECT: "subject",
 };
 
+const ClassroomBadge = ({ classRoom, subjectName, handleOpenClassroom }) => {
+  return (
+    <Badge badgeContent={classRoom} color="success">
+      <div style={{ marginRight: '20px' }} onClick={() => handleOpenClassroom(dropedSubject)}>
+        {subjectName}
+      </div>
+    </Badge>
+  );
+};
+
 export const Cell = ({
   id,
   subjectName,
@@ -32,11 +42,14 @@ export const Cell = ({
   time,
   isCellAvailable,
   nextCell,
+  emptyCell,
+  handleOpenClassroom
 }) => {
   const [isCellFilled, setIsCellFilled] = React.useState(false);
   const [droppedSubjectDuration, setDroppedSubjectDuration] = React.useState(null);
   const [backgroundColor, setBackgroundColor] = React.useState("");
   const [dropedSubject, setDropedSubject] = React.useState(null);
+  const [classRoom, setClassRoom] = React.useState(undefined);
 
 
   
@@ -57,6 +70,9 @@ export const Cell = ({
   
 
   useEffect(() => {
+    const subject = subjects.find((subject) => subject.id === subjectId);
+    setClassRoom(subject?.classRoom)
+    
     if (subjectId !== null) {
       const subjectString=subjectId.toString()
       const duration= subjects.find( (subject) => subject.id == subjectString)?.duration
@@ -72,7 +88,8 @@ export const Cell = ({
       setDropedSubject(null)
 
     }
-  }, [subjectId]);
+  
+  }, [subjectId, subjects]);
   return (
     <div
       ref={drop}
@@ -87,14 +104,24 @@ export const Cell = ({
       borderBottom:(isCellFilled)? '3px solid black':'',
       borderLeft:(isCellFilled)? '2px solid black':'',
       borderRadius:(isCellFilled)? '15px':'',
+      cursor:(isCellFilled)? 'pointer':'',
     }}
     >
-      {subjectName&&<span className="removeSubjectBtn" > X </span>}
-      <Badge badgeContent={dropedSubject?.classRoom} color="success">
-        <div style={{marginRight:'20px'}}>
-       {subjectName}  
+      {subjectName&&<span className="removeSubjectBtn" onClick={()=>emptyCell(id,day)} > X </span>}
+      {
+  classRoom ? (
+    <Badge badgeContent={classRoom} color="success">
+      <div style={{ marginRight: '20px' }} onClick={() => handleOpenClassroom(dropedSubject)}>
+        {subjectName}
       </div>
-      </Badge>
+    </Badge>
+  ) : (
+    <div style={{ marginRight: '20px' }} onClick={() => handleOpenClassroom(dropedSubject)}>
+      {subjectName}
+    </div>
+  )
+}
+    
     </div>
   );
 };

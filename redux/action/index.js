@@ -44,6 +44,13 @@ export const insertKesm=(row,day,kesmName,kesmSubject,kesmId)=>{
     }
 }
 
+export const addClassroom=(dropedSubject,classRoom)=>{
+    return{
+        type:"ADD_CLASSROOM",
+        payload:{dropedSubject,classRoom},
+    }
+}
+
 
 
 
