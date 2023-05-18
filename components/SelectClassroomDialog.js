@@ -31,12 +31,12 @@ function SelectClassroomDialog({
     handleCloseClassroom();
   };
   return (
-    <Dialog dir="rtl" maxWidth="xs" fullWidth open={openClassroom} onClose={handleCloseClassroom}>
-      <DialogTitle>تعيين قاعة الدروس</DialogTitle>
-      <DialogContent sx={{ pt: (theme) => `${theme.spacing(2)} !important` }}>
+    <Dialog dir="rtl" sx={{textAlign:'center'}} maxWidth="xs" fullWidth open={openClassroom} onClose={handleCloseClassroom}>
+      <DialogTitle sx={{fontFamily:"Vazirmatn", fontWeight:"700",fontStyle:"normal"}} >تعيين قاعة الدروس</DialogTitle>
+      <DialogContent sx={{ alignContent:"center"}}>
         <form>
           <FormControl sx={{ mr: 4 , width:"200px" }}>
-            <InputLabel id="demo-dialog-select-label" size="normal">القاعة</InputLabel>
+            <InputLabel sx={{paddingTop:'6px'}} id="demo-dialog-select-label" size="normal">القاعة</InputLabel>
             <Select
               label="Age"
               labelId="demo-dialog-select-label"

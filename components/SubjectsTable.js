@@ -64,7 +64,7 @@ const SubjectsTable = ({
       <table>
         <tbody>
           <tr>
-            <th>التوقيت/الأيام</th>
+            <th></th>
             {rows.map((row) => (
               <td key={row.id}>{row.time}</td>
             ))}

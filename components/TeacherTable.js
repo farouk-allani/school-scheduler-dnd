@@ -7,7 +7,7 @@ const TeacherTable = ({ kesmRows, setKesm,emptyKesmCell,isKesmCellAvailable }) =
           <table>
             <tbody>
               <tr>
-                <th>التوقيت/الأيام</th>
+                <th></th>
                 {kesmRows.map((row) => (
                   <td key={row.id}>{row.time}</td>
                 ))}
