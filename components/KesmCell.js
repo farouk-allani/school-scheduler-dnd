@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useDrop,useDrag } from "react-dnd";
 const kesmTypes = {
   KESM: "kesm",
