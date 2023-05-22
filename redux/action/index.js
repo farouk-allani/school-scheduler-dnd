@@ -13,10 +13,10 @@ export const unDropSubject = (subjectId) => {
   };
 };
 
-export const insertSubject = (row,day, subjectName,subjectId) => {
+export const insertSubject = (row,day, subjectName,subjectId,kesm) => {
   return {
     type: "INSERT_SUBJECT",
-    payload: {row,day, subjectName,subjectId},
+    payload: {row,day, subjectName,subjectId,kesm},
   };
 }
 

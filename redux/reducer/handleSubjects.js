@@ -115,7 +115,7 @@ const subjects = [
     name: "عربية",
     teacher: {
       id: 3,
-      name: "Ms. Smith",
+      name: "arabic teacher",
     },
     availability: [
       { day: "monday", time: "10:00-09:00" },
@@ -142,7 +142,7 @@ const subjects = [
     name: "عربية",
     teacher: {
       id: 3,
-      name: "Ms. Smith",
+      name: "arabic teacher",
     },
     availability: [
       { day: "monday", time: "10:00-09:00" },
@@ -169,7 +169,7 @@ const subjects = [
     name: "عربية",
     teacher: {
       id: 3,
-      name: "Ms. Smith",
+      name: "arabic teacher",
     },
     availability: [
       { day: "monday", time: "10:00-09:00" },
@@ -196,7 +196,7 @@ const subjects = [
     name: "عربية",
     teacher: {
       id: 3,
-      name: "Ms. Smith",
+      name: "arabic teacher",
     },
     availability: [
       { day: "monday", time: "10:00-09:00" },
@@ -223,7 +223,7 @@ const subjects = [
     name: "عربية",
     teacher: {
       id: 3,
-      name: "Ms. Smith",
+      name: "arabic teacher",
     },
     availability: [
       { day: "monday", time: "10:00-09:00" },
@@ -250,7 +250,7 @@ const subjects = [
     name: "عربية",
     teacher: {
       id: 3,
-      name: "Ms. Smith",
+      name: "arabic teacher",
     },
     availability: [
       { day: "monday", time: "10:00-09:00" },

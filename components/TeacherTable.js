@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from "../styles/Home.module.css";
 import KesmCell from './KesmCell';
-const TeacherTable = ({ kesmRows, setKesm,emptyKesmCell,isKesmCellAvailable }) => {
+const TeacherTable = ({ kesmRows, setKesm,emptyKesmCell,isKesmCellAvailable, teacher }) => {
   return (
     <div className={styles.table}>
           <table>
@@ -20,8 +20,8 @@ const TeacherTable = ({ kesmRows, setKesm,emptyKesmCell,isKesmCellAvailable }) =
                       rowId={row.id}
                       day="monday"
                       time={row.time}
-                      kesmName={row.monday.kesmName}
-                      kesmSubject={row.monday.kesmSubject}
+                      kesmName={row.monday.kesm}
+                      kesmSubject={row.monday.subjectName}
                       setKesm={setKesm}
                       isKesmCellAvailable={isKesmCellAvailable}
                       
@@ -37,8 +37,8 @@ const TeacherTable = ({ kesmRows, setKesm,emptyKesmCell,isKesmCellAvailable }) =
                       rowId={row.id}
                       day="tuesday"
                       time={row.time}
-                      kesmName={row.tuesday.kesmName}
-                      kesmSubject={row.tuesday.kesmSubject}
+                      kesmName={row.tuesday.kesm}
+                      kesmSubject={row.tuesday.subjectName}
                       setKesm={setKesm}
                       isKesmCellAvailable={isKesmCellAvailable}
                     />
@@ -56,8 +56,8 @@ const TeacherTable = ({ kesmRows, setKesm,emptyKesmCell,isKesmCellAvailable }) =
                       rowId={row.id}
                       day="wednesday"
                       time={row.time}
-                      kesmName={row.wednesday.kesmName}
-                      kesmSubject={row.wednesday.kesmSubject}
+                      kesmName={row.wednesday.kesm}
+                      kesmSubject={row.wednesday.subjectName}
                       setKesm={setKesm}
                       isKesmCellAvailable={isKesmCellAvailable}
                     />
@@ -75,8 +75,8 @@ const TeacherTable = ({ kesmRows, setKesm,emptyKesmCell,isKesmCellAvailable }) =
                      rowId={row.id}
                       day="thursday"
                       time={row.time}
-                      kesmName={row.thursday.kesmName}
-                      kesmSubject={row.thursday.kesmSubject}
+                      kesmName={row.thursday.kesm}
+                      kesmSubject={row.thursday.subjectName}
                       setKesm={setKesm}
                       isKesmCellAvailable={isKesmCellAvailable}
                     />
@@ -91,8 +91,8 @@ const TeacherTable = ({ kesmRows, setKesm,emptyKesmCell,isKesmCellAvailable }) =
                       rowId={row.id}
                       day="friday"
                       time={row.time}
-                      kesmName={row.friday.kesmName}
-                      kesmSubject={row.friday.kesmSubject}
+                      kesmName={row.friday.kesm}
+                      kesmSubject={row.friday.subjectName}
                       setKesm={setKesm}
                       isKesmCellAvailable={isKesmCellAvailable}
                     />
@@ -110,8 +110,8 @@ const TeacherTable = ({ kesmRows, setKesm,emptyKesmCell,isKesmCellAvailable }) =
                       rowId={row.id}
                       day="saturday"
                       time={row.time}
-                      kesmName={row.saturday.kesmName}
-                      kesmSubject={row.saturday.kesmSubject}
+                      kesmName={row.saturday.kesm}
+                      kesmSubject={row.saturday.subjectName}
                       setKesm={setKesm}
                       isKesmCellAvailable={isKesmCellAvailable}
                     />

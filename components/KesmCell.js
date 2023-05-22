@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDrop } from "react-dnd";
 const kesmTypes = {
   KESM: "kesm",
@@ -21,12 +22,24 @@ const KesmCell = ({
       canDrop: monitor.canDrop(),
     }),
   }));
+
+
+
   return (
     <div
       ref={drop}
       className={
         isOver ? (canDrop ? "cell-over-green" : "cell-over-red") : "cell"
       }
+      style={{
+        backgroundColor: kesmName? "#146C94":"",
+        fontSize: kesmName? "9px":"",
+        display: kesmName?"flex":"",
+        flexDirection:kesmName? "column":"",
+        borderBottom:kesmName?"3px solid black":"",
+        borderLeft:kesmName?"2px solid black":"",
+        borderRadius:kesmName?"15px":"",
+      }}
     >
       {kesmName}
       <span style={{ color: "red" }}>{kesmSubject}</span>

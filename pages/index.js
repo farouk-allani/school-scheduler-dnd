@@ -49,8 +49,7 @@ export const Cell = ({
   handleOpenClassroom,
 }) => {
   const [isCellFilled, setIsCellFilled] = React.useState(false);
-  const [droppedSubjectDuration, setDroppedSubjectDuration] =
-    React.useState(null);
+  const [droppedSubjectDuration, setDroppedSubjectDuration] =React.useState(null);
   const [backgroundColor, setBackgroundColor] = React.useState("");
   const [dropedSubject, setDropedSubject] = React.useState(null);
   const [classRoom, setClassRoom] = React.useState(undefined);
@@ -118,8 +117,7 @@ export const Cell = ({
     >
       {subjectName && (
         <span className="removeSubjectBtn" onClick={() => emptyCell(id, day)}>
-          {" "}
-          X{" "}
+          X
         </span>
       )}
       {subjectName && (
@@ -186,10 +184,10 @@ export default function Home() {
   const setSubject = (id, subjectId, day, time) => {
     // check if the case is already filled first
 
-    if (rows.find((row) => row.id === id)[day].subjectName !== "") {
-      alert("هذه الخانة ممتلئة ");
-      return;
-    }
+    // if (rows.find((row) => row.id === id)[day].subjectName !== "") {
+    //   alert("هذه الخانة ممتلئة ");
+    //   return;
+    // }
 
     const selectedSubject = subjects.find(
       (subject) => subject.id === subjectId
@@ -200,19 +198,16 @@ export default function Home() {
       (availability) => availability.day === day && availability.time === time
     );
 
-    if (!isAvailable) {
-      alert("هذا المقرر غير متاح في هذا الوقت");
-      return;
-    }
+    // if (!isAvailable) {
+    //   alert("هذا المقرر غير متاح في هذا الوقت");
+    //   return;
+    // }
 
     dispatch(dropSubject(subjectId));
 
-    const subjectName = subjects.find(
-      (subject) => subject.id === subjectId
-    ).name;
     const row = rows.find((row) => row.id === id);
 
-    dispatch(insertSubject(row, day, subjectName, subjectId));
+    dispatch(insertSubject(row, day, selectedSubject.name, subjectId,selectedSubject.kesm));
   };
 
   const emptyCell = (id, day) => {
@@ -228,15 +223,15 @@ export default function Home() {
     }
     dispatch(unDropSubject(subject.id));
 
-    dispatch(insertSubject(row, day, "", null));
+    dispatch(insertSubject(row, day, "", null,""));
   };
 
   const isCellAvailable = (subjectName, day, time, duration) => {
     // set duration
     setSelectedSubjectDuration(duration);
-
+     
     const subject = subjects.find((subject) => subject.name === subjectName);
-
+  return true
     const isAvailable = subject?.availability?.some(
       (availability) => availability.day === day && availability.time === time
     );
@@ -278,7 +273,12 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <DndProvider backend={HTML5Backend}>
-        <div className={styles.kesmName}>القسم: سنة أولى إبتدائي الشابي</div>
+        <div style={{display:'flex',justifyContent:"center",gap:"10px"}} >
+        <img src="/books-image.png" className={styles.books} />
+        <div className={styles.title}>الأقسام الدراسية</div>
+        
+       </div>
+        <div className={styles.kesmName} ><span style={{color:"#3A98B9"}}>  القسم:  </span> سنة أولى إبتدائي الشابي </div>
         <SubjectsTable
           rows={rows}
           setSubject={setSubject}
@@ -313,25 +313,44 @@ export default function Home() {
           </AccordionDetails>
         </Accordion>
 
-        <div className={styles.teacherName}>Teacher: Arabic Teacher</div>
+        <div className={styles.teacherName} ><span style={{color:"#3A98B9"}}>  المدرس:  </span>    معلم العربية </div>
+
         <TeacherTable
-          kesmRows={kesmRows}
+          kesmRows={rows}
           setKesm={setKesm}
           emptyKesmCell={emptyKesmCell}
           isKesmCellAvailable={isKesmCellAvailable}
+          teacher={"arabic teacher"}
         />
+             <Accordion classes={{ root: "myAccordion" }}>
+          <AccordionSummary
+            classes={{ root: "MuiAccordion" }}
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography style={{fontFamily:"Vazirmatn",fontWeight:'700'}}>الحصص</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
         <div className={styles.aksem}>
-          {aksem
+          {subjects
             .filter((kesm, i) => kesm.isDropped === false)
+            .filter((kesm)=> kesm.teacher.name==="arabic teacher")
+            .filter((kesm)=> kesm.kesm==="سنة أولى إبتدائي الشابي")
+            .filter((kesm)=> kesm.name==="عربية")
             .map((kesm) => (
               <Kesm
                 key={kesm.id}
                 kesmId={kesm.id}
-                kesmName={kesm.name}
-                subjectName={kesm.subjectName}
+                kesmName={kesm.kesm}
+                subjectName={kesm.name}
+                duration={kesm.duration}
               />
             ))}
+
         </div>
+        </AccordionDetails>
+        </Accordion>
       </DndProvider>
     </div>
   );

@@ -47,9 +47,12 @@
 }
 
 .title {
-  margin: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 30px;
   line-height: 1.15;
-  font-size: 4rem;
+  color: #3A98B9;
+  
 }
 
 .title,
@@ -151,8 +154,7 @@
 }
 
 .aksem{
-  background-color: rgb(23,162,184,0.2);
-    margin: 29px auto;
+
     display: flex;
     justify-content: center;
     padding: 14px;
@@ -160,7 +162,7 @@
   
 }
 .kesmName{
-  color:tomato;
+  color:#FF6969;
   padding: 10px;
   margin: 10px;
   font-size: large;
@@ -168,9 +170,15 @@
 }
 
 .teacherName{
-  color:tomato;
+  color:#FF6969;
   padding: 10px;
   margin: 10px;
   font-size: large;
   font-weight: 700;
+}
+
+.books{
+  width: 59px;
+  height: 59px;
+  padding-top: 5px;
 }
