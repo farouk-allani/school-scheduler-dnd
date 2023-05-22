@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDrop } from "react-dnd";
+import { useDrop,useDrag } from "react-dnd";
 const kesmTypes = {
   KESM: "kesm",
 };
@@ -23,9 +23,19 @@ const KesmCell = ({
     }),
   }));
 
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: kesmTypes.KESM,
+    item: { kesmId: rowId, kesmName: kesmName },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  }));
+
+
 
 
   return (
+    <div ref={drag} style={{opacity: isDragging ? 0.5 : 1,}}  >
     <div
       ref={drop}
       className={
@@ -40,9 +50,10 @@ const KesmCell = ({
         borderLeft:kesmName?"2px solid black":"",
         borderRadius:kesmName?"15px":"",
       }}
-    >
+    > 
       {kesmName}
       <span style={{ color: "red" }}>{kesmSubject}</span>
+    </div>
     </div>
   );
 };
