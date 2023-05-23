@@ -51,6 +51,13 @@ export const addClassroom=(dropedSubject,classRoom)=>{
     }
 }
 
+export const removeClassroom=(dropedSubject)=>{
+    return{
+        type:"REMOVE_CLASSROOM",
+        payload:{dropedSubject},
+    }
+}
+
 
 
 

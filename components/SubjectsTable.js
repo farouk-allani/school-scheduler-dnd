@@ -26,8 +26,7 @@ const SubjectsTable = ({
     const isCellFilled = subjectsRows.find(
       (row) => row.id === rowId && row[day].subjectName !== ""
     );
-    console.log("subjectsRow", subjectsRows)
-    console.log("isCellFilled", isCellFilled)
+
     if (isCellFilled){
       setHoveredCell(null);
       setNextCell(null)

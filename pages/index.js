@@ -5,8 +5,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import React, { useEffect } from "react";
 import Subject from "../components/Subject";
 import { useSelector, useDispatch } from "react-redux";
-import { dropSubject, unDropSubject } from "../redux/action";
-import { insertSubject } from "../redux/action";
+import { dropSubject, unDropSubject, removeClassroom,insertSubject } from "../redux/action";
 import SubjectsTable from "../components/SubjectsTable";
 import TeacherTable from "../components/TeacherTable";
 import Kesm from "../components/Kesm";
@@ -23,18 +22,7 @@ export const ItemTypes = {
   SUBJECT: "subject",
 };
 
-const ClassroomBadge = ({ classRoom, subjectName, handleOpenClassroom }) => {
-  return (
-    <Badge badgeContent={classRoom} color="success">
-      <div
-        style={{ marginRight: "20px" }}
-        onClick={() => handleOpenClassroom(dropedSubject)}
-      >
-        {subjectName}
-      </div>
-    </Badge>
-  );
-};
+
 
 export const Cell = ({
   id,
@@ -53,23 +41,35 @@ export const Cell = ({
   const [backgroundColor, setBackgroundColor] = React.useState("");
   const [dropedSubject, setDropedSubject] = React.useState(null);
   const [classRoom, setClassRoom] = React.useState(undefined);
+  
+
 
   const [{ isOver, canDrop }, drop] = useDrop(() => ({
     accept: ItemTypes.SUBJECT,
     canDrop: (subjectItem) =>
       isCellAvailable(subjectItem.name, day, time, subjectItem.duration),
-    drop: (subjectItem) => setSubject(id, subjectItem.id, day, time),
+    drop: (subjectItem) => setSubject(id, subjectItem.id, day, time,handleOpenClassroom),
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
     }),
   }));
 
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: ItemTypes.SUBJECT,
+    item: { id: subjectId, name: subjectName, duration: droppedSubjectDuration },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  }) ,[subjectId,subjectName,droppedSubjectDuration] );
+
+
   const isNextCell = nextCell?.rowId === id && nextCell?.day === day;
   const subjects = useSelector((state) => state.handleSubjects);
 
   useEffect(() => {
     const subject = subjects.find((subject) => subject.id === subjectId);
+    console.log("subjectId", subjectId)
     setClassRoom(subject?.classRoom);
 
     if (subjectId !== null) {
@@ -88,8 +88,9 @@ export const Cell = ({
       setBackgroundColor("");
       setDropedSubject(null);
     }
-  }, [subjectId, subjects]);
+  }, [subjectId, subjects,isDragging]);
   return (
+    <div ref={ isCellFilled? drag:null} style={{opacity:isDragging? 0.5:1}} >
     <div
       ref={drop}
       className={
@@ -145,6 +146,7 @@ export const Cell = ({
         </div>
       )}
     </div>
+    </div>
   );
 };
 
@@ -155,6 +157,7 @@ export default function Home() {
   const rows = useSelector((state) => state.handleRows);
   const kesmRows = useSelector((state) => state.handleKesmRows);
   const aksem = useSelector((state) => state.handleAksem);
+  
 
   const dispatch = useDispatch();
 
@@ -181,17 +184,31 @@ export default function Home() {
     }
   };
 
-  const setSubject = (id, subjectId, day, time) => {
+  const setSubject = (id, subjectId, day, time, handleOpenClassroom ) => {
+   
+
+
+    console.log("setSubject is fired")
+    console.log("id", id)
+    console.log("subjectId", subjectId)
     // check if the case is already filled first
 
-    // if (rows.find((row) => row.id === id)[day].subjectName !== "") {
-    //   alert("هذه الخانة ممتلئة ");
-    //   return;
-    // }
+    if (rows.find((row) => row.id === id)[day].subjectName !== "") {
+      alert("هذه الخانة ممتلئة ");
+      return;
+    }
 
     const selectedSubject = subjects.find(
       (subject) => subject.id === subjectId
     );
+
+     // check if subject has been assigned a classroom
+      if (selectedSubject.classRoom === undefined) {
+        handleOpenClassroom(selectedSubject);
+        
+      }
+
+
 
     // Check if the selected subject is available at the specified day and time
     const isAvailable = selectedSubject.availability.some(
@@ -202,12 +219,25 @@ export default function Home() {
     //   alert("هذا المقرر غير متاح في هذا الوقت");
     //   return;
     // }
+    
+    // search for this subject by id if it exists in the table delete it 
+    rows.forEach((row) => {
+      Object.keys(row).forEach((key) => {
+        if (row[key].subjectId === subjectId) {
+          
+          dispatch(insertSubject(row, key, "", null,""));
+        }
+      });
+    });
+
 
     dispatch(dropSubject(subjectId));
 
     const row = rows.find((row) => row.id === id);
 
     dispatch(insertSubject(row, day, selectedSubject.name, subjectId,selectedSubject.kesm));
+    
+   
   };
 
   const emptyCell = (id, day) => {
@@ -224,6 +254,10 @@ export default function Home() {
     dispatch(unDropSubject(subject.id));
 
     dispatch(insertSubject(row, day, "", null,""));
+
+    // delete classroom
+    dispatch(removeClassroom(subject));
+
   };
 
   const isCellAvailable = (subjectName, day, time, duration) => {

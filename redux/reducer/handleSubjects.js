@@ -551,7 +551,7 @@ const handleSubjects = (state = subjects, action) => {
         if (subject.id === action.payload) {
           return {
             ...subject,
-            isDropped: !subject.isDropped,
+            isDropped: true,
           };
         } else {
           return subject;
@@ -563,7 +563,7 @@ const handleSubjects = (state = subjects, action) => {
           if (subject.id === action.payload) {
             return {
               ...subject,
-              isDropped: !subject.isDropped,
+              isDropped: false,
             };
           } else {
             return subject;
@@ -581,6 +581,19 @@ const handleSubjects = (state = subjects, action) => {
               return subject;
             }
           });
+
+          case "REMOVE_CLASSROOM":
+            return state.map((subject) => {
+              if (subject.id === action.payload.dropedSubject.id) {
+                return {
+                  ...subject,
+                  classRoom: undefined,
+                };
+              } else {
+                return subject;
+              }
+            });
+
 
     default:
       return state;
